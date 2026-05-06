@@ -16,12 +16,12 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #0a0a0a;
-      --black2:  #111111;
+      --black:   #050505;
+      --black2:  #0a0a0a;
       --green:   #00e676;
       --green-dark: #00c764;
       --white:   #ffffff;
-      --border:  #222222;
+      --border:  #1f1f1f;
       --font: 'Inter', sans-serif;
     }
 
@@ -61,21 +61,27 @@
       border-radius: 50px;
       border: none;
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       white-space: nowrap;
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
     }
+    .btn-wa::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: all 0.5s ease;
+    }
+    .btn-wa:hover::before { left: 100%; }
     .btn-wa:hover {
       background: var(--green-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,230,118,0.35);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(0,230,118,0.4);
     }
-    .btn-wa svg { flex-shrink: 0; }
+    .btn-wa svg { flex-shrink: 0; transition: transform 0.3s; }
+    .btn-wa:hover svg { transform: translateX(2px); }
 
-    .btn-wa--lg {
-      font-size: 1.15rem;
-      padding: 20px 44px;
-    }
+    .btn-wa--lg { font-size: 1.15rem; padding: 20px 44px; }
 
     .tag {
       display: inline-block;
@@ -98,6 +104,12 @@
       color: var(--green);
       margin-bottom: 16px;
       display: inline-block;
+      animation: glowText 3s infinite alternate;
+    }
+
+    @keyframes glowText {
+      0% { text-shadow: 0 0 10px rgba(0,230,118,0); }
+      100% { text-shadow: 0 0 15px rgba(0,230,118,0.4); }
     }
 
     /* ============================================================
@@ -108,14 +120,14 @@
       top: 0; left: 0; right: 0;
       z-index: 1000;
       padding: 0 24px;
-      height: 68px;
+      height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(10,10,10,0.85);
+      background: rgba(5,5,5,0.7);
       backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      transition: background 0.3s;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.4s, border-color 0.4s;
     }
 
     .nav-logo {
@@ -129,18 +141,18 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
 
     .nav-phone {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--white);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    .nav-phone svg { fill: var(--green); }
+    .nav-phone svg { fill: var(--green); animation: pulse-dot 2s infinite; }
 
     .nav-btn {
       display: inline-flex;
@@ -149,49 +161,70 @@
       background: var(--green);
       color: #000;
       font-family: var(--font);
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 50px;
       text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
+      transition: all 0.3s;
     }
     .nav-btn:hover {
       background: var(--green-dark);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,230,118,0.3);
     }
 
     @media (max-width: 600px) {
       .nav-phone { display: none; }
       .nav-btn span { display: none; }
+      .nav-btn { padding: 10px 14px; }
     }
 
     /* ============================================================
-       HERO (FLAT BACKGROUND)
+       HERO (DYNAMIC)
     ============================================================ */
     #hero {
       position: relative;
-      min-height: 90vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 120px 24px 80px;
-      background: var(--black); /* Fondo plano */
+      overflow: hidden;
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
-      /* Eliminada la imagen de fondo, se usa un gradiente sutil y elegante */
-      background: radial-gradient(circle at 50% 0%, rgba(0, 230, 118, 0.08) 0%, transparent 60%);
-      pointer-events: none;
+      background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.08);
+      transition: transform 12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: grayscale(0.2) contrast(1.1);
+    }
+    #hero:hover .hero-bg { transform: scale(1); }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* Dynamic gradient overlay to keep text legible but keep background visible */
+      background: linear-gradient(135deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.7) 50%, rgba(5,5,5,0.95) 100%);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 860px;
+      animation: fadeUp 1s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero-eyebrow {
@@ -208,6 +241,7 @@
       padding: 8px 18px;
       border-radius: 50px;
       margin-bottom: 28px;
+      backdrop-filter: blur(10px);
     }
     .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse-dot 1.6s infinite; }
 
@@ -223,10 +257,24 @@
       letter-spacing: -0.04em;
       margin-bottom: 24px;
       color: var(--white);
+      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .hero-h1 em {
       font-style: normal;
       color: var(--green);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--green);
+      opacity: 0.2;
+      border-radius: 4px;
     }
 
     .hero-sub {
@@ -248,22 +296,38 @@
     }
 
     /* ============================================================
-       VISUAL SECTIONS (80/20)
+       VISUAL SECTIONS (80/20) WITH HOVER FX
     ============================================================ */
     .visual-section {
       background: var(--black2);
-      padding: 100px 24px;
-      border-top: 1px solid var(--border);
+      padding: 120px 24px;
+      position: relative;
+      overflow: hidden;
     }
     .visual-section.alt { background: var(--black); }
+
+    /* Decorative light blobs */
+    .visual-section::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,230,118,0.03) 0%, transparent 70%);
+      top: -300px; left: -300px;
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .visual-section.alt::before { right: -300px; left: auto; }
 
     .visual-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      gap: 80px;
       align-items: center;
       max-width: 1160px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
     .visual-grid.reverse { direction: rtl; }
     .visual-grid.reverse > * { direction: ltr; }
@@ -281,7 +345,7 @@
     .visual-desc {
       font-size: 1.05rem;
       color: rgba(255,255,255,0.65);
-      margin-bottom: 24px;
+      margin-bottom: 32px;
       line-height: 1.6;
     }
 
@@ -290,49 +354,169 @@
       border-radius: 20px;
       overflow: hidden;
       aspect-ratio: 4 / 3;
-      border: 1px solid var(--border);
-      background: #000;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s;
     }
+    .visual-grid.reverse .visual-media { transform: perspective(1000px) rotateY(5deg); }
+    .visual-media:hover {
+      transform: perspective(1000px) rotateY(0deg) translateY(-10px) !important;
+      box-shadow: 0 40px 80px rgba(0,230,118,0.15);
+      border-color: rgba(0,230,118,0.3);
+    }
+
     .visual-media img {
       width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0.8;
+      opacity: 0.9;
+      transition: transform 0.6s;
+    }
+    .visual-media:hover img { transform: scale(1.03); opacity: 1; }
+
+    /* Play Button for Video Placeholders */
+    .play-btn-large {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px; height: 80px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse-play 2s infinite;
+      z-index: 2;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,230,118,0.4);
+      transition: transform 0.3s;
+    }
+    .play-btn-large:hover { transform: translate(-50%, -50%) scale(1.1); }
+    .play-btn-large svg { margin-left: 5px; width: 30px; height: 30px; }
+
+    @keyframes pulse-play {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,118,0.6); }
+      50%       { box-shadow: 0 0 0 20px rgba(0,230,118,0); }
     }
 
-    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-    .bullet-item { display: flex; gap: 12px; align-items: flex-start; }
+    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .bullet-item { display: flex; gap: 16px; align-items: flex-start; }
     .bullet-icon {
-      flex-shrink: 0; width: 24px; height: 24px;
+      flex-shrink: 0; width: 28px; height: 28px;
       background: rgba(0,230,118,0.12);
       border: 1px solid rgba(0,230,118,0.3);
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 15px rgba(0,230,118,0.2);
     }
-    .bullet-icon svg { width: 12px; height: 12px; stroke: var(--green); }
-    .bullet-text { font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+    .bullet-icon svg { width: 14px; height: 14px; stroke: var(--green); }
+    .bullet-text { font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
     .bullet-text strong { color: var(--white); font-weight: 600; }
 
     /* ============================================================
-       FOUNDER INFO / CONTACT
+       FOUNDER INFO
     ============================================================ */
     .founder-card {
-      background: var(--black);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 20px;
-      padding: 32px;
+      padding: 24px;
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
       margin-top: 40px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .founder-card:hover {
+      background: rgba(0,230,118,0.05);
+      border-color: rgba(0,230,118,0.2);
     }
     .founder-img {
-      width: 80px; height: 80px;
+      width: 70px; height: 70px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--green);
+      box-shadow: 0 0 20px rgba(0,230,118,0.3);
     }
-    .founder-info h4 { font-size: 1.1rem; margin-bottom: 4px; }
-    .founder-info p { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 12px;}
-    .founder-phone { font-size: 1rem; font-weight: 700; color: var(--green); display: flex; align-items: center; gap: 6px;}
+    .founder-info h4 { font-size: 1.05rem; margin-bottom: 2px; }
+    .founder-info p { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 8px;}
+    .founder-phone { font-size: 0.95rem; font-weight: 700; color: var(--green); display: flex; align-items: center; gap: 6px;}
+
+    /* ============================================================
+       STACK TECNOLÓGICO
+    ============================================================ */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1160px;
+      margin: 60px auto 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .layer-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1.2;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: var(--black);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s;
+    }
+    .layer-card:hover { 
+      transform: translateY(-10px); 
+      border-color: rgba(0,230,118,0.4); 
+      box-shadow: 0 20px 40px rgba(0,230,118,0.15);
+    }
+
+    .layer-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.8s ease-out, filter 0.8s;
+      filter: grayscale(0.8) brightness(0.4);
+    }
+    .layer-card:hover .layer-card-bg { 
+      transform: scale(1.1); 
+      filter: grayscale(0) brightness(0.7); 
+    }
+
+    .layer-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    }
+
+    .layer-card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 30px;
+      z-index: 2;
+    }
+
+    .layer-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .layer-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .layer-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
 
     /* ============================================================
        CASOS DE RESULTADO
@@ -342,37 +526,94 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       max-width: 1160px;
-      margin: 40px auto 0;
+      margin: 60px auto 0;
+      position: relative;
+      z-index: 1;
     }
 
     .caso-card {
-      background: #0d0d0d;
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 20px;
       padding: 40px;
       display: flex; flex-direction: column; gap: 16px;
-      transition: transform 0.3s, border-color 0.3s;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s, background 0.4s;
     }
-    .caso-card:hover { transform: translateY(-4px); border-color: rgba(0,230,118,0.3); }
+    .caso-card:hover { 
+      transform: translateY(-8px); 
+      border-color: rgba(0,230,118,0.4);
+      background: rgba(0,230,118,0.03);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
 
     .caso-header { display: flex; flex-direction: column; align-items: flex-start; gap: 8px;}
-    .caso-big-number { font-size: clamp(3rem, 5vw, 4rem); font-weight: 900; color: var(--green); line-height: 1; }
-    .caso-title { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; }
-    .caso-desc { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.6; flex: 1; margin-top: 8px;}
+    .caso-big-number { font-size: clamp(3rem, 5vw, 4rem); font-weight: 900; color: var(--green); line-height: 1; text-shadow: 0 0 20px rgba(0,230,118,0.3); }
+    .caso-title { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
+    .caso-desc { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; flex: 1; margin-top: 8px;}
 
     /* ============================================================
        CTA FINAL
     ============================================================ */
     #cta-final {
       position: relative;
-      padding: 120px 24px;
+      padding: 140px 24px;
       text-align: center;
       background: var(--black2);
-      border-top: 1px solid var(--border);
+      overflow: hidden;
     }
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      filter: grayscale(0.5);
+    }
+    .cta-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(5,5,5,0.9);
+    }
+
     .cta-content { position: relative; z-index: 2; max-width: 740px; margin: 0 auto; }
-    .cta-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
-    .cta-sub { font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 40px; line-height: 1.6; }
+    .cta-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin-bottom: 24px; line-height: 1.1; letter-spacing: -0.03em;}
+    .cta-sub { font-size: 1.1rem; color: rgba(255,255,255,0.65); margin-bottom: 48px; line-height: 1.6; }
+
+    /* ============================================================
+       FLOATING WA BUTTON (BOUNCING)
+    ============================================================ */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 64px; height: 64px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 24px rgba(0,230,118,0.5);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+      animation: float-in 0.6s 1s both, wa-bounce 3s infinite ease-in-out;
+    }
+    .wa-float:hover {
+      transform: scale(1.15) !important;
+      box-shadow: 0 12px 36px rgba(0,230,118,0.8);
+      animation-play-state: paused;
+    }
+    .wa-float svg { width: 32px; height: 32px; fill: #000; }
+
+    @keyframes float-in {
+      from { opacity: 0; transform: scale(0.5) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes wa-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
 
     /* ============================================================
        RESPONSIVE
@@ -382,7 +623,14 @@
       .visual-content { max-width: 100%; }
       .visual-grid.reverse > * { direction: ltr; }
       .visual-grid.reverse { direction: ltr; }
+      .visual-media { transform: none !important; }
+      
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
       .casos-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .stack-grid { grid-template-columns: 1fr; }
+      .btn-wa--lg { font-size: 1rem; padding: 16px 28px; }
     }
   </style>
 </head>
@@ -406,7 +654,7 @@
   </nav>
 
   <!-- ===================================================
-       HERO (FLAT BACKGROUND)
+       HERO (DYNAMIC BACKGROUND)
   =================================================== -->
   <section id="hero">
     <div class="hero-bg"></div>
@@ -424,7 +672,7 @@
       </p>
       
       <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-        <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20quiero%20agendar%20mi%20sesi%C3%B3n%20de%20diagn%C3%B3stico" class="btn-wa btn-wa--lg" style="background:var(--white);color:var(--black);">
+        <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20quiero%20agendar%20mi%20sesi%C3%B3n%20de%20diagn%C3%B3stico" class="btn-wa btn-wa--lg">
           Agendar Sesión de Diagnóstico
         </a>
       </div>
@@ -439,8 +687,10 @@
     <div class="visual-grid">
       
       <div class="visual-media">
-        <!-- Reemplazar src con imagen real -->
         <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Mentalidad Centauro">
+        <div class="play-btn-large">
+          <svg viewBox="0 0 24 24" fill="#000"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
       </div>
 
       <div class="visual-content">
@@ -471,7 +721,6 @@
     <div class="visual-grid reverse">
       
       <div class="visual-media" style="aspect-ratio: 3/4; max-width: 380px; margin: 0 auto;">
-        <!-- Reemplazar src con video o GIF real de Instagram DM -->
         <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="Agente de IA filtrando">
       </div>
 
@@ -488,7 +737,7 @@
           </li>
           <li class="bullet-item">
             <div class="bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <p class="bullet-text"><strong>Pre-calificación:</strong> El Agente solicita datos, presupuesto o fotos clínicas antes de pasarlo a un vendedor humano.</p>
+            <p class="bullet-text"><strong>Pre-calificación:</strong> El Agente solicita datos, presupuesto o requerimientos antes de pasarlo a un vendedor humano.</p>
           </li>
         </ul>
 
@@ -511,9 +760,59 @@
   </section>
 
   <!-- ===================================================
+       4 CAPAS TECNOLÓGICAS
+  =================================================== -->
+  <section class="visual-section">
+    <div class="container" style="text-align: center; max-width: 700px; margin: 0 auto;">
+      <p class="section-label">Infraestructura Técnica</p>
+      <h2 class="visual-title">Las 4 Capas del Stack Tecnológico</h2>
+      <p class="visual-desc">Un ecosistema de ventas High Ticket requiere una orquestación perfecta entre inteligencia, bases de datos y canales de comunicación.</p>
+    </div>
+
+    <div class="stack-grid">
+      <div class="layer-card">
+        <div class="layer-card-bg" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="layer-card-overlay"></div>
+        <div class="layer-card-content">
+          <div class="layer-num">Capa 1</div>
+          <div class="layer-title">Modelos LLM</div>
+          <p class="layer-desc">GPT, Claude, Gemini. Los cerebros que procesan el lenguaje y ejecutan las instrucciones (CO-STAR).</p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="layer-card-overlay"></div>
+        <div class="layer-card-content">
+          <div class="layer-num">Capa 2</div>
+          <div class="layer-title">Datos y CRM</div>
+          <p class="layer-desc">GoHighLevel, Salesforce. Donde vive el pipeline y las rutas de conversión automatizadas.</p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-bg" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="layer-card-overlay"></div>
+        <div class="layer-card-content">
+          <div class="layer-num">Capa 3</div>
+          <div class="layer-title">Aplicaciones</div>
+          <p class="layer-desc">n8n, Make, Dapta. La infraestructura invisible que conecta la IA con tus datos.</p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-bg" style="background-image: url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="layer-card-overlay"></div>
+        <div class="layer-card-content">
+          <div class="layer-num">Capa 4</div>
+          <div class="layer-title">Canales</div>
+          <p class="layer-desc">Instagram DM, WhatsApp, Ads. Donde ocurre la captación y comunicación real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
        NUEVOS CASOS DE ESTUDIO
   =================================================== -->
-  <section id="casos" class="visual-section">
+  <section id="casos" class="visual-section alt">
     <div class="container" style="text-align: center;">
       <p class="section-label">Resultados Comprobados</p>
       <h2 class="visual-title">Infraestructuras de Alta Conversión</h2>
@@ -522,7 +821,7 @@
 
     <div class="casos-grid">
       
-      <!-- Caso E-commerce (Nuevo) -->
+      <!-- Caso E-commerce -->
       <div class="caso-card">
         <div class="caso-header">
           <div class="caso-big-number">5X</div>
@@ -530,7 +829,7 @@
         </div>
         <div class="caso-title">Tienda Online / E-commerce</div>
         <p class="caso-desc">
-          Escalado agresivo en 18 meses. Facturamos 2.800 millones COP con un CPA de solo 21% del ticket promedio. Motor de adquisición optimizado de cero a +3.000 órdenes al mes.
+          Escalado agresivo en 18 meses. Facturamos 2.800 millones COP con un CPA de solo 21% del ticket. De cero a +3.000 órdenes/mes.
         </p>
       </div>
 
@@ -542,7 +841,7 @@
         </div>
         <div class="caso-title">Pipeline B2B Bilingüe</div>
         <p class="caso-desc">
-          Scraping de datos automatizado + pre-calificación con agentes. Redujimos el tiempo operativo 100% manual y duplicamos la generación de citas agendadas y cierres finales.
+          Scraping de datos automatizado + pre-calificación con agentes. Redujimos el tiempo operativo 100% manual y duplicamos citas agendadas.
         </p>
       </div>
 
@@ -554,7 +853,7 @@
         </div>
         <div class="caso-title">Venta Evergreen Internacional</div>
         <p class="caso-desc">
-          $200K USD generados en ecosistema automatizado. El tráfico pasaba por un VSL, sistema de pre-calificación IA estricto, y agendamiento directo con un closer humano.
+          $200K USD generados en ecosistema automatizado. Desde VSL, pre-calificación IA estricta, y agendamiento con un closer humano.
         </p>
       </div>
 
@@ -565,6 +864,7 @@
        CTA FINAL
   =================================================== -->
   <section id="cta-final">
+    <div class="cta-bg"></div>
     <div class="cta-content">
       <p class="section-label" style="margin-bottom: 20px;">Tu negocio puede operar así</p>
       <h2 class="cta-title">
@@ -577,55 +877,69 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="#000"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
         Agendar por WhatsApp (3158313357)
       </a>
-      <p style="margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.4);">
+      <p style="margin-top: 24px; font-size: 0.9rem; color: rgba(255,255,255,0.5);">
         Atención directa por Juan Pablo Mesa. Si no encajamos, te lo diré en 5 minutos.
       </p>
     </div>
   </section>
 
   <!-- ===================================================
-       FOOTER
+       FOOTER & WA FLOATING BTN
   =================================================== -->
-  <footer style="background: #000; padding: 40px 24px; text-align: center; border-top: 1px solid var(--border);">
+  <footer style="background: #000; padding: 40px 24px; text-align: center; border-top: 1px solid var(--border); position: relative; z-index: 10;">
     <p style="font-size: 0.85rem; color: rgba(255,255,255,0.3);">
       Growth Partner &nbsp;·&nbsp; Automatización Comercial High Ticket &nbsp;·&nbsp; &copy; 2026
     </p>
   </footer>
 
+  <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20quiero%20agendar%20mi%20sesi%C3%B3n%20de%20diagn%C3%B3stico"
+     target="_blank" rel="noopener" class="wa-float" aria-label="Abrir WhatsApp">
+    <svg viewBox="0 0 24 24" fill="#000">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+    </svg>
+  </a>
+
   <!-- SCRIPT DE ANIMACIONES -->
   <script>
+    // Nav behavior on scroll
     (function () {
       var nav = document.getElementById('nav');
       window.addEventListener('scroll', function () {
         if (window.scrollY > 60) {
-          nav.style.background = 'rgba(10,10,10,0.97)';
-          nav.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+          nav.style.background = 'rgba(5,5,5,0.95)';
+          nav.style.borderBottomColor = 'rgba(0,230,118,0.2)';
         } else {
-          nav.style.background = 'rgba(10,10,10,0.85)';
-          nav.style.borderBottomColor = 'rgba(255,255,255,0.06)';
+          nav.style.background = 'rgba(5,5,5,0.7)';
+          nav.style.borderBottomColor = 'rgba(255,255,255,0.04)';
         }
       }, { passive: true });
     })();
 
+    // Staggered Scroll Animations
     (function () {
       var targets = document.querySelectorAll(
-        '.caso-card, .visual-media, .visual-content, .bullet-item, .founder-card'
+        '.caso-card, .visual-media, .visual-content, .layer-card, .founder-card'
       );
       targets.forEach(function (el, i) {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(24px)';
-        el.style.transition = 'opacity 0.55s ease ' + (i % 4) * 0.08 + 's, transform 0.55s ease ' + (i % 4) * 0.08 + 's';
+        el.style.transform = 'translateY(40px)';
+        el.style.transition = 'opacity 0.6s ease ' + (i % 4) * 0.1 + 's, transform 0.6s cubic-bezier(0.16,1,0.3,1) ' + (i % 4) * 0.1 + 's';
       });
 
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            // Restablecer transformación pero permitir que :hover y transformaciones base apliquen
+            if(entry.target.classList.contains('visual-media')) {
+               entry.target.style.transform = entry.target.parentElement.classList.contains('reverse') ? 'perspective(1000px) rotateY(5deg)' : 'perspective(1000px) rotateY(-5deg)';
+            } else {
+               entry.target.style.transform = 'translateY(0)';
+            }
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.1 });
 
       targets.forEach(function (el) { observer.observe(el); });
     })();
@@ -634,12 +948,8 @@
   <!-- ===================================================
        AGENCY AGENTS (O CHATBOT WIDGET PLACEHOLDER)
   =================================================== -->
-  <!-- 
-    Aquí es donde debes pegar el código de tu chatbot interactivo de Gency Agents, Chatbase o Voiceflow. 
-    Se renderizará como una burbuja flotante en la esquina inferior derecha.
-  -->
   <script>
-    // Placeholder para simular la carga del script de tu agente.
+    // Pega aquí el código de tu chatbot interactivo de Gency Agents, Chatbase o Voiceflow. 
     console.log("Agente de IA inicializado.");
   </script>
 
