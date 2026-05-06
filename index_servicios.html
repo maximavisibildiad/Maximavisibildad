@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ecosistemas de captación y cierre para negocios High Ticket. Mentalidad Centauro, Agentes IA y automatización." />
+  <title>Growth Partner — Ecosistemas para Servicios High Ticket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0a0a0a;
+      --black2:  #111111;
+      --green:   #00e676;
+      --green-dark: #00c764;
+      --blue:    #1A6BFF;
+      --white:   #ffffff;
+      --gray:    #888888;
+      --border:  #222222;
+      --font: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       REUSABLE UTILITIES
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: #000;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .btn-wa:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,230,118,0.35);
+    }
+    .btn-wa svg { flex-shrink: 0; }
+
+    .btn-wa--lg {
+      font-size: 1.15rem;
+      padding: 20px 44px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(0,230,118,0.12);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 50px;
+      border: 1px solid rgba(0,230,118,0.25);
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+    .nav-logo strong { font-weight: 800; }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #000;
+      font-family: var(--font);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .nav-btn:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80'); /* Dashboard tech vibe */
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.75) 60%, rgba(10,10,10,0.95) 100%);
+    }
+
+    #hero:hover .hero-bg { transform: scale(1.0); }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,230,118,0.1);
+      border: 1px solid rgba(0,230,118,0.3);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse-dot 1.6s infinite; }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+    .hero-h1 em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-micro {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       VISUAL SECTIONS (80% IMAGE / 20% TEXT)
+    ============================================================ */
+    .visual-section {
+      background: var(--black);
+      padding: 100px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .visual-section.alt {
+      background: var(--black2);
+    }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    
+    .visual-grid.reverse {
+      direction: rtl;
+    }
+    .visual-grid.reverse > * {
+      direction: ltr;
+    }
+
+    .visual-content {
+      max-width: 500px;
+    }
+
+    .visual-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .visual-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .visual-media {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .visual-media img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.85);
+    }
+    
+    /* Play Button for Video Placeholders */
+    .play-btn-large {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px; height: 80px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse-play 2s infinite;
+      z-index: 2;
+      cursor: pointer;
+    }
+    .play-btn-large svg { margin-left: 5px; width: 30px; height: 30px; }
+
+    @keyframes pulse-play {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,118,0.5); }
+      50%       { box-shadow: 0 0 0 18px rgba(0,230,118,0); }
+    }
+
+    /* Bullet List */
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .bullet-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .bullet-icon {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      background: rgba(0,230,118,0.12);
+      border: 1px solid rgba(0,230,118,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .bullet-icon svg { width: 12px; height: 12px; stroke: var(--green); }
+    .bullet-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+    .bullet-text strong { color: var(--white); font-weight: 600; }
+
+    /* ============================================================
+       STAT STRIP
+    ============================================================ */
+    #stats {
+      background: var(--black2);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 24px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 24px 20px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--green);
+      margin-bottom: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+      max-width: 180px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       STACK TECNOLÓGICO
+    ============================================================ */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1160px;
+      margin: 40px auto 0;
+    }
+
+    .layer-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1.1;
+      cursor: default;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      border: 1px solid var(--border);
+    }
+    .layer-card:hover { transform: translateY(-6px) scale(1.02); border-color: rgba(0,230,118,0.3); }
+
+    .layer-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease-out;
+      filter: grayscale(0.5) brightness(0.6);
+    }
+    .layer-card:hover .layer-card-bg { transform: scale(1.06); filter: grayscale(0) brightness(0.8); }
+
+    .layer-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.1) 100%);
+    }
+
+    .layer-card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      z-index: 2;
+    }
+
+    .layer-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .layer-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .layer-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       CASOS DE RESULTADO CAROUSEL
+    ============================================================ */
+    .casos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 1160px;
+      margin: 40px auto 0;
+    }
+
+    .caso-card {
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .caso-card:hover {
+      border-color: rgba(0,230,118,0.3);
+      transform: translateY(-4px);
+    }
+
+    .caso-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .caso-big-number {
+      font-size: clamp(3.5rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--green);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .caso-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .caso-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+      flex: 1;
+      margin-top: 10px;
+    }
+
+    /* ============================================================
+       CTA FINAL
+    ============================================================ */
+    #cta-final {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px;
+      overflow: hidden;
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .cta-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.86);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 740px;
+    }
+
+    .cta-title {
+      font-size: clamp(2rem, 5.5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+    .cta-title em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .cta-sub {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0 auto 44px;
+    }
+
+    .cta-micro {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 36px 24px;
+      text-align: center;
+    }
+    #footer p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       FLOATING WA BUTTON
+    ============================================================ */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 60px; height: 60px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 24px rgba(0,230,118,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: float-in 0.6s 1s both;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 36px rgba(0,230,118,0.65);
+    }
+
+    @keyframes float-in {
+      from { opacity: 0; transform: scale(0.5) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .visual-grid { grid-template-columns: 1fr; gap: 40px; }
+      .visual-content { max-width: 100%; }
+      .visual-grid.reverse > * { direction: ltr; }
+      .visual-grid.reverse { direction: ltr; }
+      
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .stat-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+      
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .casos-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-btn span { display: none; }
+      .nav-btn       { padding: 10px 14px; }
+
+      .stats-grid    { grid-template-columns: 1fr 1fr; }
+      .stat-item     { border-right: none !important; border-top: none; padding: 20px 12px; }
+      .stat-item:nth-child(odd) { border-right: 1px solid var(--border) !important; }
+      .stat-item:nth-child(n+3) { border-top: 1px solid var(--border) !important; }
+
+      .stack-grid { grid-template-columns: 1fr; }
+      
+      .btn-wa--lg    { font-size: 1rem; padding: 18px 32px; }
+      .caso-card     { padding: 32px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================================================
+       NAV
+  =================================================== -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Growth<strong>Partner</strong></a>
+    <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20quiero%20conocer%20c%C3%B3mo%20aplicar%20el%20m%C3%A9todo%20a%20mi%20negocio"
+       target="_blank" rel="noopener" class="nav-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#000" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+      <span>Contacto</span>
+    </a>
+  </nav>
+
+  <!-- ===================================================
+       HERO
+  =================================================== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span></span>
+        Método Growth Partner — USA & LATAM
+      </div>
+      <h1 class="hero-h1">
+        Este método no vende servicios.<br>
+        <em>Construye ecosistemas.</em>
+      </h1>
+      <p class="hero-sub">
+        Sistemas automatizados de captación, calificación y conversión para negocios High Ticket. IA y talento humano trabajando 24 horas al día.
+      </p>
+      <a href="#video-intro" class="btn-wa btn-wa--lg" style="background:var(--white);color:var(--black);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#000">
+          <polygon points="5,3 19,12 5,21"/>
+        </svg>
+        Ver cómo funciona
+      </a>
+      <p class="hero-micro">Ningún lead se pierde. Toda persona tiene una ruta de conversión.</p>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       VIDEO INTRO / MENTALIDAD CENTAURO
+  =================================================== -->
+  <section id="video-intro" class="visual-section">
+    <div class="visual-grid">
+      
+      <div class="visual-media">
+        <!-- VSL Placeholder -->
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Video Mentalidad Centauro">
+        <div class="play-btn-large">
+          <svg viewBox="0 0 24 24" fill="#000"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+
+      <div class="visual-content">
+        <p class="section-label">Módulo 1</p>
+        <h2 class="visual-title">Mentalidad Centauro & Organigrama Híbrido</h2>
+        <p class="visual-desc">
+          El error de las empresas es ver la IA como una "herramienta". Los negocios que escalan la ven como <strong>un nuevo miembro del equipo</strong>.
+        </p>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <div class="bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <p class="bullet-text"><strong>Humano (20%):</strong> Estrategia, empatía, toma de decisiones y cierre.</p>
+          </li>
+          <li class="bullet-item">
+            <div class="bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <p class="bullet-text"><strong>Máquina (80%):</strong> Ejecución sin fatiga, respuesta 24/7 y procesamiento de datos masivos.</p>
+          </li>
+          <li class="bullet-item">
+            <div class="bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <p class="bullet-text"><strong>Organigrama Híbrido:</strong> Implementación de agentes con roles fijos (ej: Agente Calificador de Leads en Instagram).</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================
+       PRECALIFICACIÓN IA
+  =================================================== -->
+  <section class="visual-section alt">
+    <div class="visual-grid reverse">
+      
+      <div class="visual-media" style="aspect-ratio: 3/4; max-width: 400px; margin: 0 auto;">
+        <!-- GIF/Video Placeholder of Agent Chat -->
+        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="IA Chat Interface">
+        <div class="play-btn-large">
+          <svg viewBox="0 0 24 24" fill="#000"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+
+      <div class="visual-content">
+        <p class="section-label">Precalificación Automatizada</p>
+        <h2 class="visual-title">La regla de oro: El agente NO vende. Filtra.</h2>
+        <p class="visual-desc">
+          El objetivo único del agente de IA es conseguir los requisitos técnicos (fotos, datos financieros) y entregarle un lead caliente y precalificado a tu equipo comercial.
+        </p>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <div class="bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <p class="bullet-text"><strong>Respuesta en < 5 minutos:</strong> Eliminamos los tiempos muertos que enfrían ventas.</p>
+          </li>
+          <li class="bullet-item">
+            <div class="bullet-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <p class="bullet-text"><strong>SLA Comercial de 2 Horas:</strong> El humano interviene solo cuando el prospecto está listo para una propuesta económica.</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================
+       4 CAPAS TECNOLÓGICAS
+  =================================================== -->
+  <section class="visual-section" style="padding-bottom: 120px;">
+    <div class="container" style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+      <p class="section-label">Infraestructura Técnica</p>
+      <h2 class="visual-title">Las 4 Capas del Stack Tecnológico</h2>
+      <p class="visual-desc">Un ecosistema de ventas High Ticket no es solo hacer anuncios. Requiere una orquestación perfecta entre modelos de inteligencia, bases de datos y canales de comunicación.</p>
+    </div>
+
+    <div class="stack-grid">
+      <div class="layer-card">
+        <div class="layer-card-bg" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="layer-card-overlay"></div>
+        <div class="layer-card-content">
+          <div class="layer-num">Capa 1</div>
+          <div class="layer-title">Modelos LLM</div>
+          <p class="layer-desc">GPT, Claude, Gemini. Los cerebros que procesan el lenguaje y ejecutan las instrucciones (CO-STAR).</p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="layer-card-overlay"></div>
+        <div class="layer-card-content">
+          <div class="layer-num">Capa 2</div>
+          <div class="layer-title">Datos y CRM</div>
+          <p class="layer-desc">GoHighLevel, Salesforce. Donde vive la información, el pipeline y las rutas de conversión largas.</p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-bg" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="layer-card-overlay"></div>
+        <div class="layer-card-content">
+          <div class="layer-num">Capa 3</div>
+          <div class="layer-title">Aplicaciones</div>
+          <p class="layer-desc">n8n, Make, Dapta. La infraestructura invisible que conecta la inteligencia artificial con tus datos.</p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-card-bg" style="background-image: url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="layer-card-overlay"></div>
+        <div class="layer-card-content">
+          <div class="layer-num">Capa 4</div>
+          <div class="layer-title">Canales</div>
+          <p class="layer-desc">Instagram DM, WhatsApp, Email, Meta Ads. Donde ocurre la captación y comunicación real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       CASOS DE RESULTADO
+  =================================================== -->
+  <section id="casos" style="background:var(--black2); padding: 100px 24px; border-top: 1px solid var(--border);">
+    <div class="container" style="text-align: center;">
+      <p class="section-label">Casos Reales</p>
+      <h2 class="visual-title">Validado en múltiples industrias</h2>
+    </div>
+
+    <div class="casos-grid">
+      
+      <!-- Caso 1 -->
+      <div class="caso-card">
+        <div class="caso-header">
+          <div class="caso-big-number">54.000M</div>
+          <div class="tag">Inmobiliario (COP)</div>
+        </div>
+        <div class="caso-title">Constructora / Sector Inmobiliario</div>
+        <p class="caso-desc">
+          El tráfico abría la puerta, el sistema comercial cerraba el negocio. Un ROAS increíble de 1.201X operando con sistemas full-funnel y estrategias de ventas estructuradas.
+        </p>
+      </div>
+
+      <!-- Caso 2 -->
+      <div class="caso-card">
+        <div class="caso-header">
+          <div class="caso-big-number">6X</div>
+          <div class="tag">Servicios B2B (USD)</div>
+        </div>
+        <div class="caso-title">Ecosistema High Ticket (MX / FR)</div>
+        <p class="caso-desc">
+          Facturación de $200K USD con embudos evergreen. Integración desde VSL hasta automatización de agenda y pre-calificación para handoff a closers.
+        </p>
+      </div>
+
+      <!-- Caso 3 -->
+      <div class="caso-card">
+        <div class="caso-header">
+          <div class="caso-big-number">&minus;75%</div>
+          <div class="tag">Odontología</div>
+        </div>
+        <div class="caso-title">Pre-calificación IA Médica</div>
+        <p class="caso-desc">
+          El agente de IA filtró leads no calificados que consumían tiempo. Redujo el costo por propuesta a $50 USD y aumentó la capacidad de propuestas x4 con el mismo presupuesto.
+        </p>
+      </div>
+
+      <!-- Caso 4 -->
+      <div class="caso-card">
+        <div class="caso-header">
+          <div class="caso-big-number">+100%</div>
+          <div class="tag">Outbound (USA)</div>
+        </div>
+        <div class="caso-title">Pipeline B2B Automatizado</div>
+        <p class="caso-desc">
+          Prospección automatizada (scraping) + calificación de IA. Reducción del tiempo operativo a cero y duplicación de citas y cierres mensuales.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================
+       CTA FINAL
+  =================================================== -->
+  <section id="cta-final">
+    <div class="cta-bg"></div>
+    <div class="cta-content">
+      <p class="section-label" style="margin-bottom: 20px;">Implementación</p>
+      <h2 class="cta-title">
+        Empieza pequeño.<br><em>Escala lo que funciona.</em>
+      </h2>
+      <p class="cta-sub">
+        Evita implementaciones de 16 meses que fracasan. Definimos un caso de uso específico, instalamos un agente, medimos rentabilidad y escalamos sobre el ROI comprobado.
+      </p>
+      <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20quiero%20conocer%20c%C3%B3mo%20aplicar%20el%20m%C3%A9todo%20a%20mi%20negocio"
+         target="_blank" rel="noopener" class="btn-wa btn-wa--lg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#000">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+        Agenda tu llamada estratégica
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       FOOTER & FLOATING BTN
+  =================================================== -->
+  <footer id="footer">
+    <div class="container">
+      <p>Growth Partner &nbsp;·&nbsp; Ecosistemas High Ticket con IA &nbsp;·&nbsp; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20quiero%20conocer%20c%C3%B3mo%20aplicar%20el%20m%C3%A9todo%20a%20mi%20negocio"
+     target="_blank" rel="noopener" class="wa-float" aria-label="Abrir WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#000">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('nav');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 60) {
+          nav.style.background = 'rgba(10,10,10,0.97)';
+          nav.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+        } else {
+          nav.style.background = 'rgba(10,10,10,0.85)';
+          nav.style.borderBottomColor = 'rgba(255,255,255,0.06)';
+        }
+      }, { passive: true });
+    })();
+
+    (function () {
+      var targets = document.querySelectorAll(
+        '.layer-card, .caso-card, .visual-media, .visual-content, .bullet-item'
+      );
+      targets.forEach(function (el, i) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity 0.55s ease ' + (i % 4) * 0.08 + 's, transform 0.55s ease ' + (i % 4) * 0.08 + 's';
+      });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      targets.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+</body>
+</html>
