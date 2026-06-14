@@ -127,6 +127,28 @@
       color: var(--gold);
     }
 
+    /* ── ICP STRIP ── */
+    .icp-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 8px;
+      margin: 28px auto 32px;
+      max-width: 700px;
+    }
+    .icp-tag {
+      font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .icp-sep {
+      font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+      font-weight: 300;
+      color: rgba(200,164,90,0.3);
+    }
+
     .hero-sub {
       font-size: clamp(0.95rem, 2vw, 1.1rem);
       color: rgba(255,255,255,0.45);
@@ -432,11 +454,22 @@
       Para dueños de negocios de servicios que ya facturan de forma consistente
     </div>
     <h1 class="hero-h1">
-      No tenés un problema de leads.<br>
-      <em>Tenés un sistema roto después del clic.</em>
+      El sistema que vende tu servicio<br>
+      <em>mientras vos dormís</em>
     </h1>
+
+    <div class="icp-strip">
+      <span class="icp-tag">Odontólogos</span>
+      <span class="icp-sep">·</span>
+      <span class="icp-tag">Constructoras</span>
+      <span class="icp-sep">·</span>
+      <span class="icp-tag">Agencias</span>
+      <span class="icp-sep">·</span>
+      <span class="icp-tag">Armonizadores faciales</span>
+    </div>
+
     <p class="hero-sub">
-      Cada mes sin sistema predecible, estás perdiendo clientes que deberías estar cerrando. En 2 minutos te explico exactamente qué está fallando — y qué instalamos para resolverlo.
+      He manejado el presupuesto de decenas de negocios de servicios. El patrón que vi siempre fue el mismo: plata en anuncios, personas interesadas llegando — y el mes cerrando flojo igual. En 2 minutos te muestro exactamente qué está fallando y cómo lo resolvimos.
     </p>
   </section>
 
@@ -449,10 +482,10 @@
         <div class="step-num">1</div>
         <div class="step-label">Mirá el video completo</div>
       </div>
-      <h2 class="step-title">Por qué tu negocio pierde clientes — y cómo instalamos el sistema que lo resuelve.</h2>
+      <h2 class="step-title">Por qué tu negocio pierde clientes y cómo instalamos el sistema que lo resuelve</h2>
       <div class="video-wrapper">
         <iframe
-          src="https://www.youtube.com/embed/bvyGw-93Uyw?rel=0&modestbranding=1&color=white"
+          src="https://www.youtube.com/embed/1vt34Netik8?rel=0&modestbranding=1&color=white"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
