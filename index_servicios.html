@@ -92,8 +92,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(200,164,90,0.08);
-      border: 1px solid rgba(200,164,90,0.25);
+      background: rgba(200,164,90,0.1);
+      border: 1px solid rgba(200,164,90,0.4);
       color: var(--gold);
       font-size: 0.7rem;
       font-weight: 700;
@@ -102,12 +102,18 @@
       padding: 7px 16px;
       border-radius: 50px;
       margin-bottom: 28px;
+      animation: eyebrow-glow 2.5s ease-in-out infinite;
     }
     .eyebrow-dot {
       width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--gold);
       animation: pulse-dot 1.6s infinite;
+    }
+
+    @keyframes eyebrow-glow {
+      0%, 100% { box-shadow: 0 0 12px rgba(200,164,90,0.3), 0 0 28px rgba(200,164,90,0.12); }
+      50%       { box-shadow: 0 0 22px rgba(200,164,90,0.55), 0 0 48px rgba(200,164,90,0.22); }
     }
 
     @keyframes pulse-dot {
@@ -328,6 +334,36 @@
       .filter-box { padding: 24px 20px; }
     }
 
+    /* ── BTN ROJO ── */
+    .btn-cta-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #e03030;
+      color: #fff;
+      font-family: var(--font);
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 18px 42px;
+      border-radius: 50px;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-cta-red:hover {
+      background: #c42020;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 44px rgba(224,48,48,0.45);
+    }
+
+    /* ── DESCRIPCION POST VIDEO ── */
+    .post-video-desc {
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      text-align: center;
+      max-width: 560px;
+      margin: 32px auto 0;
+    }
+
     /* ── PROOF STRIP ── */
     .proof-strip {
       display: grid;
@@ -468,9 +504,6 @@
       <span class="icp-tag">Armonizadores faciales</span>
     </div>
 
-    <p class="hero-sub">
-      He manejado el presupuesto de decenas de negocios de servicios. El patrón que vi siempre fue el mismo: plata en anuncios, personas interesadas llegando — y el mes cerrando flojo igual. En 2 minutos te muestro exactamente qué está fallando y cómo lo resolvimos.
-    </p>
   </section>
 
   <!-- CONTENT -->
@@ -491,6 +524,23 @@
         </iframe>
       </div>
 
+      <!-- BTN ROJO -->
+      <div style="text-align: center; margin-top: 28px;">
+        <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20vi%20el%20video%20y%20quiero%20agendar%20mi%20diagn%C3%B3stico%20gratuito"
+           target="_blank" rel="noopener" class="btn-cta-red">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+          </svg>
+          Quiero mi diagnóstico gratis
+        </a>
+        <p style="margin-top: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.45);">Sin pitch · 20 minutos · Juan Pablo Mesa</p>
+      </div>
+
+      <!-- DESCRIPCION -->
+      <p class="post-video-desc">
+        He manejado el presupuesto de decenas de negocios de servicios. El patrón que vi siempre fue el mismo: plata en anuncios, personas interesadas llegando y el mes cerrando flojo igual. En 2 minutos te muestro exactamente qué está fallando y cómo lo resolvimos.
+      </p>
+
       <!-- PROOF STRIP -->
       <div class="proof-strip">
         <div class="proof-item">
@@ -507,16 +557,6 @@
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 32px;">
-        <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20vi%20el%20video%20y%20quiero%20agendar%20mi%20diagn%C3%B3stico%20gratuito"
-           target="_blank" rel="noopener" class="btn-cta">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#000">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-          </svg>
-          Quiero mi diagnóstico gratis
-        </a>
-        <p style="margin-top: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.55);">Sin pitch · 20 minutos · Juan Pablo Mesa</p>
-      </div>
     </div>
 
     <div class="divider"></div>
