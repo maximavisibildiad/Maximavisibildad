@@ -306,6 +306,71 @@
       .filter-box { padding: 24px 20px; }
     }
 
+    /* ── PROOF STRIP ── */
+    .proof-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(200,164,90,0.12);
+      border: 1px solid rgba(200,164,90,0.15);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 36px;
+    }
+    .proof-item {
+      background: var(--black);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .proof-number {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .proof-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 560px) {
+      .proof-strip { grid-template-columns: 1fr; }
+    }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-block {
+      margin-top: 36px;
+      border-left: 3px solid rgba(200,164,90,0.5);
+      padding: 24px 28px;
+      background: rgba(200,164,90,0.03);
+      border-radius: 0 12px 12px 0;
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+    .testimonial-author {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── PARA QUIÉN SÍ ── */
+    .filter-yes {
+      margin-bottom: 16px;
+    }
+    .filter-yes .filter-heading { color: rgba(200,164,90,0.8); }
+    .filter-yes li { color: rgba(255,255,255,0.75); }
+    .filter-yes li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+
     /* ── FOOTER ── */
     footer {
       padding: 32px 24px;
@@ -364,14 +429,14 @@
   <section id="hero">
     <div class="eyebrow">
       <span class="eyebrow-dot"></span>
-      Para dueños de negocios de servicios que ya invierten en publicidad
+      Para dueños de negocios de servicios que ya facturan de forma consistente
     </div>
     <h1 class="hero-h1">
-      Tu negocio consigue leads.<br>
-      <em>El problema es lo que pasa después.</em>
+      No tenés un problema de leads.<br>
+      <em>Tenés un sistema roto después del clic.</em>
     </h1>
     <p class="hero-sub">
-      En 2 minutos te explico exactamente por qué se te van los clientes — y cómo instalamos el sistema que lo resuelve.
+      Cada mes sin sistema predecible, estás perdiendo clientes que deberías estar cerrando. En 2 minutos te explico exactamente qué está fallando — y qué instalamos para resolverlo.
     </p>
   </section>
 
@@ -384,13 +449,29 @@
         <div class="step-num">1</div>
         <div class="step-label">Mirá el video completo</div>
       </div>
-      <h2 class="step-title">¿Dónde se están yendo tus clientes?</h2>
+      <h2 class="step-title">Por qué tu negocio pierde clientes — y cómo instalamos el sistema que lo resuelve.</h2>
       <div class="video-wrapper">
         <iframe
           src="https://www.youtube.com/embed/bvyGw-93Uyw?rel=0&modestbranding=1&color=white"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
+      </div>
+
+      <!-- PROOF STRIP -->
+      <div class="proof-strip">
+        <div class="proof-item">
+          <div class="proof-number">–75%</div>
+          <div class="proof-label">Costo por propuesta<br>Consultorio odontológico</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-number">$100K USD</div>
+          <div class="proof-label">Facturados con $6K invertidos<br>Sector salud</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-number">ROAS 6X</div>
+          <div class="proof-label">$200K USD facturados<br>High ticket, LATAM</div>
+        </div>
       </div>
 
       <div style="text-align: center; margin-top: 32px;">
@@ -414,10 +495,10 @@
         <div class="step-label">Tomá acción</div>
       </div>
       <div class="cta-box">
-        <h2 class="step-title">Agendá tu diagnóstico gratuito</h2>
+        <h2 class="step-title">Descubrí cuánto te está costando no tener el sistema</h2>
         <p class="cta-desc">
-          Sin pitch. En 20 minutos revisamos tu proceso actual y te digo con honestidad si podemos ayudarte.
-          Si no encajamos, te lo digo en los primeros 5 minutos.
+          En 20 minutos diagnosticamos dónde se están cayendo tus leads y qué falta para convertirlos en ingresos predecibles.
+          Sin pitch — si en los primeros 5 minutos veo que no puedo ayudarte, te lo digo directo. No tengo interés en un cliente que no sea caso de éxito.
         </p>
         <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20vi%20el%20video%20y%20quiero%20agendar%20mi%20diagn%C3%B3stico%20gratuito"
            target="_blank" rel="noopener" class="btn-cta">
@@ -429,9 +510,22 @@
         <p class="cta-micro">Atención directa con Juan Pablo Mesa &nbsp;·&nbsp; (+57) 315 831 3357</p>
       </div>
 
+      <!-- TESTIMONIO -->
+      <div class="testimonial-block">
+        <p class="testimonial-text">"Me cambió la vida desde que te conocí. No entendía cómo crear un sistema que atendiera, precalificara, y que mi equipo comercial solo hablara con quien ya estaba calificado. El seguimiento y el aporte en el área de ventas nos permitieron llegar a los resultados que hemos llegado."</p>
+        <p class="testimonial-author">Dueño · Consultorio odontológico</p>
+      </div>
+
       <!-- FILTRO -->
       <div class="filter-box">
-        <p class="filter-heading">Esto NO es para ti si</p>
+        <ul class="filter-list filter-yes" style="margin-bottom: 24px;">
+          <p class="filter-heading">Esto SÍ es para vos si</p>
+          <li>Tu negocio ya factura de forma consistente y querés crecer de forma predecible.</li>
+          <li>Sentís que estás perdiendo leads en el proceso — no en la captación.</li>
+          <li>Tu equipo comercial pierde tiempo en prospectos que nunca van a cerrar.</li>
+          <li>Querés un sistema que funcione sin depender de que vos estés encima.</li>
+        </ul>
+        <p class="filter-heading">Esto NO es para vos si</p>
         <ul class="filter-list">
           <li>Tu negocio factura menos de $10K/mes de forma consistente.</li>
           <li>Vendés productos físicos sin un proceso comercial de consulta previo al cierre.</li>
