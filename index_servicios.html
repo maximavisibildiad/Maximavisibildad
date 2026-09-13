@@ -13,20 +13,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:     #050505;
-      --black2:    #0d0d0d;
-      --gold:      #C8A45A;
-      --gold-dark: #B8923F;
+      --navy:      #1B2A4A;
+      --navy-deep: #12203A;
+      --blue:      #2E75B6;
+      --blue-dark: #235C8F;
       --white:     #ffffff;
-      --border:    #1f1f1f;
+      --offwhite:  #F4F7FB;
+      --border:    rgba(27,42,74,0.12);
       --font: 'Inter', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
-      color: var(--white);
+      background: var(--white);
+      color: var(--navy);
       font-family: var(--font);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -44,9 +45,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(5,5,5,0.88);
+      background: rgba(255,255,255,0.88);
       backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(200,164,90,0.15);
+      border-bottom: 1px solid rgba(27,42,74,0.1);
       transition: border-color 0.4s;
     }
 
@@ -54,15 +55,16 @@
       font-size: 1.1rem;
       font-weight: 400;
       letter-spacing: -0.01em;
+      color: var(--navy);
     }
-    .nav-logo strong { font-weight: 900; color: var(--gold); }
+    .nav-logo strong { font-weight: 900; color: var(--blue); }
 
     .nav-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--gold);
-      color: #000;
+      background: var(--blue);
+      color: #fff;
       font-family: var(--font);
       font-size: 0.85rem;
       font-weight: 700;
@@ -72,9 +74,9 @@
       white-space: nowrap;
     }
     .nav-btn:hover {
-      background: var(--gold-dark);
+      background: var(--blue-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(200,164,90,0.35);
+      box-shadow: 0 8px 24px rgba(46,117,182,0.35);
     }
 
     @media (max-width: 480px) {
@@ -92,9 +94,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(200,164,90,0.1);
-      border: 1px solid rgba(200,164,90,0.4);
-      color: var(--gold);
+      background: rgba(46,117,182,0.08);
+      border: 1px solid rgba(46,117,182,0.35);
+      color: var(--blue);
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.13em;
@@ -107,13 +109,13 @@
     .eyebrow-dot {
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--blue);
       animation: pulse-dot 1.6s infinite;
     }
 
     @keyframes eyebrow-glow {
-      0%, 100% { box-shadow: 0 0 12px rgba(200,164,90,0.3), 0 0 28px rgba(200,164,90,0.12); }
-      50%       { box-shadow: 0 0 22px rgba(200,164,90,0.55), 0 0 48px rgba(200,164,90,0.22); }
+      0%, 100% { box-shadow: 0 0 12px rgba(46,117,182,0.25), 0 0 28px rgba(46,117,182,0.1); }
+      50%       { box-shadow: 0 0 22px rgba(46,117,182,0.45), 0 0 48px rgba(46,117,182,0.18); }
     }
 
     @keyframes pulse-dot {
@@ -127,10 +129,11 @@
       line-height: 1.07;
       letter-spacing: -0.04em;
       margin-bottom: 20px;
+      color: var(--navy);
     }
     .hero-h1 em {
       font-style: normal;
-      color: var(--gold);
+      color: var(--blue);
     }
 
     /* ── ICP STRIP ── */
@@ -146,18 +149,18 @@
       font-size: clamp(1.1rem, 2.8vw, 1.6rem);
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: var(--gold);
+      color: var(--blue);
       white-space: nowrap;
     }
     .icp-sep {
       font-size: clamp(1.1rem, 2.8vw, 1.6rem);
       font-weight: 300;
-      color: rgba(200,164,90,0.3);
+      color: rgba(46,117,182,0.3);
     }
 
     .hero-sub {
       font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: rgba(255,255,255,0.45);
+      color: rgba(27,42,74,0.55);
       line-height: 1.65;
       max-width: 520px;
       margin: 0 auto;
@@ -183,8 +186,8 @@
     .step-num {
       width: 30px; height: 30px;
       border-radius: 50%;
-      background: var(--gold);
-      color: #000;
+      background: var(--blue);
+      color: #fff;
       font-size: 0.78rem;
       font-weight: 900;
       display: flex;
@@ -197,7 +200,7 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--blue);
     }
 
     .step-title {
@@ -206,6 +209,7 @@
       letter-spacing: -0.025em;
       line-height: 1.2;
       margin-bottom: 24px;
+      color: var(--navy);
     }
 
     /* ── VIDEO ── */
@@ -213,13 +217,13 @@
       position: relative;
       width: 100%;
       padding-bottom: 56.25%;
-      background: var(--black2);
+      background: var(--navy-deep);
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid rgba(200,164,90,0.2);
+      border: 1px solid rgba(27,42,74,0.15);
       box-shadow:
-        0 0 0 1px rgba(200,164,90,0.08),
-        0 24px 64px rgba(0,0,0,0.7);
+        0 0 0 1px rgba(27,42,74,0.06),
+        0 24px 64px rgba(27,42,74,0.18);
     }
     .video-wrapper iframe {
       position: absolute;
@@ -231,15 +235,15 @@
     /* ── DIVIDER ── */
     .divider {
       width: 48px; height: 2px;
-      background: rgba(200,164,90,0.25);
+      background: rgba(46,117,182,0.3);
       border-radius: 2px;
       margin: 56px auto;
     }
 
     /* ── CTA BOX ── */
     .cta-box {
-      background: rgba(200,164,90,0.04);
-      border: 1px solid rgba(200,164,90,0.18);
+      background: var(--offwhite);
+      border: 1px solid rgba(27,42,74,0.1);
       border-radius: 20px;
       padding: 52px 44px;
       text-align: center;
@@ -249,7 +253,7 @@
 
     .cta-desc {
       font-size: 1rem;
-      color: rgba(255,255,255,0.75);
+      color: rgba(27,42,74,0.7);
       line-height: 1.65;
       max-width: 480px;
       margin: 0 auto 36px;
@@ -259,8 +263,8 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: var(--gold);
-      color: #000;
+      background: var(--blue);
+      color: #fff;
       font-family: var(--font);
       font-size: 1.05rem;
       font-weight: 800;
@@ -275,20 +279,20 @@
       position: absolute;
       top: 0; left: -100%;
       width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
       transition: left 0.5s ease;
     }
     .btn-cta:hover::before { left: 100%; }
     .btn-cta:hover {
-      background: var(--gold-dark);
+      background: var(--blue-dark);
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 16px 44px rgba(200,164,90,0.45);
+      box-shadow: 0 16px 44px rgba(46,117,182,0.4);
     }
 
     .cta-micro {
       margin-top: 18px;
       font-size: 0.8rem;
-      color: rgba(255,255,255,0.55);
+      color: rgba(27,42,74,0.55);
     }
 
     @media (max-width: 560px) {
@@ -299,7 +303,7 @@
     /* ── FILTER BOX ── */
     .filter-box {
       margin-top: 32px;
-      border: 1px dashed rgba(200,164,90,0.25);
+      border: 1px dashed rgba(27,42,74,0.22);
       border-radius: 16px;
       padding: 32px 36px;
     }
@@ -308,7 +312,7 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: rgba(27,42,74,0.6);
       margin-bottom: 18px;
     }
     .filter-list {
@@ -319,7 +323,7 @@
     }
     .filter-list li {
       font-size: 0.88rem;
-      color: rgba(255,255,255,0.65);
+      color: rgba(27,42,74,0.75);
       line-height: 1.55;
       display: flex;
       align-items: flex-start;
@@ -327,7 +331,7 @@
     }
     .filter-list li::before {
       content: '—';
-      color: rgba(200,164,90,0.6);
+      color: rgba(46,117,182,0.7);
       flex-shrink: 0;
     }
 
@@ -358,7 +362,7 @@
     /* ── DESCRIPCION POST VIDEO ── */
     .post-video-desc {
       font-size: clamp(0.95rem, 2vw, 1.05rem);
-      color: rgba(255,255,255,0.55);
+      color: rgba(27,42,74,0.6);
       line-height: 1.7;
       text-align: center;
       max-width: 560px;
@@ -370,28 +374,28 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: rgba(200,164,90,0.12);
-      border: 1px solid rgba(200,164,90,0.15);
+      background: rgba(27,42,74,0.1);
+      border: 1px solid rgba(27,42,74,0.1);
       border-radius: 16px;
       overflow: hidden;
       margin-top: 36px;
     }
     .proof-item {
-      background: var(--black);
+      background: var(--white);
       padding: 24px 20px;
       text-align: center;
     }
     .proof-number {
       font-size: clamp(1.4rem, 3vw, 1.9rem);
       font-weight: 900;
-      color: var(--gold);
+      color: var(--blue);
       letter-spacing: -0.03em;
       line-height: 1;
       margin-bottom: 6px;
     }
     .proof-label {
       font-size: 0.72rem;
-      color: rgba(255,255,255,0.45);
+      color: rgba(27,42,74,0.55);
       line-height: 1.4;
     }
 
@@ -402,14 +406,14 @@
     /* ── TESTIMONIAL ── */
     .testimonial-block {
       margin-top: 36px;
-      border-left: 3px solid rgba(200,164,90,0.5);
+      border-left: 3px solid rgba(46,117,182,0.5);
       padding: 24px 28px;
-      background: rgba(200,164,90,0.03);
+      background: rgba(46,117,182,0.04);
       border-radius: 0 12px 12px 0;
     }
     .testimonial-text {
       font-size: 0.95rem;
-      color: rgba(255,255,255,0.8);
+      color: rgba(27,42,74,0.85);
       line-height: 1.7;
       font-style: italic;
       margin-bottom: 14px;
@@ -417,7 +421,7 @@
     .testimonial-author {
       font-size: 0.75rem;
       font-weight: 700;
-      color: var(--gold);
+      color: var(--blue);
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
@@ -426,9 +430,9 @@
     .filter-yes {
       margin-bottom: 16px;
     }
-    .filter-yes .filter-heading { color: rgba(200,164,90,0.8); }
-    .filter-yes li { color: rgba(255,255,255,0.75); }
-    .filter-yes li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+    .filter-yes .filter-heading { color: rgba(46,117,182,0.9); }
+    .filter-yes li { color: rgba(27,42,74,0.85); }
+    .filter-yes li::before { content: '✓'; color: var(--blue); font-weight: 700; }
 
     /* ── FOOTER ── */
     footer {
@@ -438,7 +442,7 @@
     }
     footer p {
       font-size: 0.8rem;
-      color: rgba(255,255,255,0.2);
+      color: rgba(27,42,74,0.35);
     }
 
     /* ── FLOATING WA ── */
@@ -447,21 +451,21 @@
       bottom: 28px; right: 28px;
       z-index: 9999;
       width: 58px; height: 58px;
-      background: var(--gold);
+      background: var(--blue);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 24px rgba(200,164,90,0.5);
+      box-shadow: 0 4px 24px rgba(46,117,182,0.4);
       animation: float-in 0.6s 1.2s both, wa-bounce 3s 2s infinite ease-in-out;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .wa-float:hover {
       transform: scale(1.12) !important;
-      box-shadow: 0 12px 36px rgba(200,164,90,0.7);
+      box-shadow: 0 12px 36px rgba(46,117,182,0.6);
       animation-play-state: paused;
     }
-    .wa-float svg { width: 28px; height: 28px; fill: #000; }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
 
     @keyframes float-in {
       from { opacity: 0; transform: scale(0.5) translateY(20px); }
@@ -488,7 +492,7 @@
   <section id="hero">
     <div class="eyebrow">
       <span class="eyebrow-dot"></span>
-      Para dueños de negocios de servicios que ya facturan de forma consistente
+      Para dueños de clínicas que ya facturan de forma consistente
     </div>
     <h1 class="hero-h1">
       El sistema que vende tu servicio<br>
@@ -498,13 +502,11 @@
     <div class="icp-strip">
       <span class="icp-tag">Odontólogos</span>
       <span class="icp-sep">·</span>
-      <span class="icp-tag">Constructoras</span>
-      <span class="icp-sep">·</span>
-      <span class="icp-tag">Agencias</span>
-      <span class="icp-sep">·</span>
       <span class="icp-tag">Armonizadores faciales</span>
       <span class="icp-sep">·</span>
       <span class="icp-tag">Cirujanos plásticos</span>
+      <span class="icp-sep">·</span>
+      <span class="icp-tag">Clínicas de rehabilitación</span>
     </div>
 
   </section>
@@ -535,7 +537,7 @@
           </svg>
           Quiero mi diagnóstico gratis
         </a>
-        <p style="margin-top: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.45);">Sin pitch · 20 minutos · Juan Pablo Mesa</p>
+        <p style="margin-top: 12px; font-size: 0.78rem; color: rgba(27,42,74,0.5);">Sin pitch · 30 minutos · Juan Pablo Mesa</p>
       </div>
 
       <!-- DESCRIPCION -->
@@ -546,12 +548,12 @@
       <!-- PROOF STRIP -->
       <div class="proof-strip">
         <div class="proof-item">
-          <div class="proof-number">$100K USD</div>
-          <div class="proof-label">Facturados con $6K invertidos<br>Sector salud · Estados Unidos</div>
+          <div class="proof-number">16X ROAS</div>
+          <div class="proof-label">$6K invertidos → $100K facturados<br>Sector salud · Estados Unidos</div>
         </div>
         <div class="proof-item">
-          <div class="proof-number">$200K USD</div>
-          <div class="proof-label">Facturados con $33K invertidos<br>High ticket · LATAM</div>
+          <div class="proof-number">8.3X ROAS</div>
+          <div class="proof-label">$254K → $2.1M COP facturados (primera semana)<br>Micropigmentación · Colombia</div>
         </div>
         <div class="proof-item">
           <div class="proof-number">–75%</div>
@@ -572,12 +574,12 @@
       <div class="cta-box">
         <h2 class="step-title">Descubrí cuánto te está costando no tener el sistema</h2>
         <p class="cta-desc">
-          En 20 minutos diagnosticamos dónde se están cayendo tus leads y qué falta para convertirlos en ingresos predecibles.
+          En 30 minutos diagnosticamos dónde se están cayendo tus leads y qué falta para convertirlos en ingresos predecibles.
           Sin pitch — si en los primeros 5 minutos veo que no puedo ayudarte, te lo digo directo. No tengo interés en un cliente que no sea caso de éxito.
         </p>
         <a href="https://wa.me/573158313357?text=Hola%20Juan%20Pablo%2C%20vi%20el%20video%20y%20quiero%20agendar%20mi%20diagn%C3%B3stico%20gratuito"
            target="_blank" rel="noopener" class="btn-cta">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#000">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
           </svg>
           Quiero mi diagnóstico gratis
@@ -595,16 +597,16 @@
       <div class="filter-box">
         <ul class="filter-list filter-yes" style="margin-bottom: 24px;">
           <p class="filter-heading">Esto SÍ es para vos si</p>
-          <li>Tu negocio ya factura de forma consistente y querés crecer de forma predecible.</li>
+          <li>Tu clínica ya factura de forma consistente y querés crecer de forma predecible.</li>
           <li>Sentís que estás perdiendo leads en el proceso — no en la captación.</li>
           <li>Tu equipo comercial pierde tiempo en prospectos que nunca van a cerrar.</li>
           <li>Querés un sistema que funcione sin depender de que vos estés encima.</li>
         </ul>
         <p class="filter-heading">Esto NO es para vos si</p>
         <ul class="filter-list">
-          <li>Tu negocio factura menos de $10K/mes de forma consistente.</li>
-          <li>Vendés productos físicos sin un proceso comercial de consulta previo al cierre.</li>
-          <li>Querés contratar a alguien y desconectarte completamente del proceso.</li>
+          <li>Tu clínica todavía no factura de forma consistente (mínimo $10M COP al mes en Colombia, o $10.000 USD al mes en Estados Unidos).</li>
+          <li>No tenés a nadie —ni vos, ni un asistente— respondiendo o haciendo seguimiento a tus pacientes hoy.</li>
+          <li>No estás dispuesto a que tu equipo ejecute su parte del proceso — el sistema funciona con vos adentro, no en piloto automático total.</li>
           <li>Esperás resultados en 30 días sin haber construido nada antes.</li>
         </ul>
       </div>
@@ -630,8 +632,8 @@
       var nav = document.getElementById('nav');
       window.addEventListener('scroll', function () {
         nav.style.borderBottomColor = window.scrollY > 60
-          ? 'rgba(200,164,90,0.35)'
-          : 'rgba(200,164,90,0.15)';
+          ? 'rgba(27,42,74,0.25)'
+          : 'rgba(27,42,74,0.1)';
       }, { passive: true });
     })();
   </script>
