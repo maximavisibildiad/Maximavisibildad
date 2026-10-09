@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Growth Partner — Marketing y ventas para clínicas que ya facturan</title>
-<meta name="description" content="Tu clínica factura bien. Con un sistema de marketing y ventas puede llegar justo a donde querés. Mirá el método en 7 pasos y agendá tu diagnóstico.">
+<title>Growth Partner — Tu clínica factura bien. Puede dar más.</title>
+<meta name="description" content="Tu clínica factura bien. Sabés que puede dar más, pero no sabés cómo. Mirá el método en 7 pasos y agendá tu diagnóstico.">
 <meta property="og:title" content="Growth Partner — Tu clínica puede facturar más">
 <meta property="og:description" content="El método en 7 pasos para clínicas que ya facturan: anuncios, IA que responde, proceso comercial y recurrencia.">
 <meta property="og:image" content="assets/vsl_portada.jpg">
@@ -68,12 +68,13 @@ header .btn{font-size:15px;padding:10px 18px;box-shadow:none}
 .caso .x{display:inline-block;margin-top:18px;padding:6px 14px;border-radius:999px;background:rgba(240,255,0,.1);color:var(--acc);font-size:13.5px;font-weight:700}
 .nota{margin-top:18px;font:500 12.5px var(--m);letter-spacing:.06em;color:var(--mute);text-align:center}
 /* fundador */
-.fund{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:end;overflow:hidden;padding:0 44px}
+.fund{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center;overflow:hidden;padding:28px 44px 28px 28px}
 .fund>*{min-width:0}
-.fund .foto{position:relative;align-self:end}
-.fund .foto::before{content:'';position:absolute;left:50%;bottom:0;width:120%;aspect-ratio:1;transform:translateX(-50%);background:radial-gradient(circle,rgba(240,255,0,.26),transparent 62%)}
-.fund img{position:relative;display:block;width:100%;max-width:440px;margin:0 auto}
-.fund .txt{padding:48px 0}
+.fund .foto{position:relative}
+.fund img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:20px;border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.fund .foto figcaption{position:absolute;left:16px;bottom:16px;padding:8px 14px;border-radius:999px;background:rgba(10,18,34,.78);backdrop-filter:blur(8px);font:500 11.5px var(--m);letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.fund .foto figcaption b{color:var(--acc);font-weight:500}
+.fund .txt{padding:20px 0}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
 .stats div{border:1px solid var(--line);border-radius:16px;padding:16px}
 .stats b{display:block;font:800 30px var(--d);color:var(--acc);letter-spacing:-.02em}
@@ -166,9 +167,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;font:50
   body{font-size:16px}
   section{padding:64px 0}
   .grid3,.comp,.quien{grid-template-columns:1fr}
-  .fund{grid-template-columns:1fr;padding:0 22px}
-  .fund .txt{padding:30px 0 0}
-  .fund .foto{order:2}
+  .fund{grid-template-columns:1fr;padding:18px 18px 26px;gap:22px}
+  .fund .txt{padding:0 4px}
   .stats{grid-template-columns:1fr;gap:8px}
   .stats div{display:flex;align-items:baseline;gap:14px;padding:12px 16px}
   .stats b{font-size:24px;flex:none;min-width:96px}
@@ -195,8 +195,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;font:50
 <!-- 1 · Promesa + VSL -->
 <section class="hero"><div class="wrap">
   <div class="mono rv">Para dueños de clínicas que ya facturan</div>
-  <h1 class="rv">Tu clínica factura bien. Puede llegar <span class="k">justo a donde querés.</span></h1>
-  <p class="lead rv">Con un sistema y una metodología de marketing y ventas: anuncios, una IA que responde en segundos, un proceso comercial que cierra y pacientes que vuelven.</p>
+  <h1 class="rv">Tu clínica factura bien. Sabés que puede dar más, pero <span class="k">no sabés cómo.</span></h1>
+  <p class="lead rv">En este video de 3 minutos te muestro el sistema de marketing y ventas con el que clínicas como la tuya facturan más: anuncios, una IA que responde en segundos, un proceso comercial que cierra y pacientes que vuelven.</p>
   <div class="chips rv"><span>Odontólogos</span><span>Cirujanos plásticos</span><span>Armonizadores faciales</span><span>Micropigmentación capilar</span></div>
 
   <div class="vsl rv">
@@ -228,7 +228,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;font:50
 <!-- 3 · Fundador -->
 <section style="padding-top:20px"><div class="wrap">
   <div class="card fund rv">
-    <div class="foto"><img src="assets/jp.webp" alt="Juan Pablo Mesa, fundador de Growth Partner" loading="lazy" width="900" height="733"></div>
+    <figure class="foto"><img src="assets/jp_retrato.webp" alt="Juan Pablo Mesa, fundador de Growth Partner" loading="lazy" width="960" height="1200"><figcaption><b>●</b> Fundador · Growth Partner</figcaption></figure>
     <div class="txt">
       <div class="eyebrow"><b>3</b><span class="mono">Quién soy</span></div>
       <h2>Juan Pablo Mesa</h2>
