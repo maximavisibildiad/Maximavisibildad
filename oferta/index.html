@@ -4,72 +4,87 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Creá tu oferta</title>
-<meta name="description" content="Herramienta paso a paso para crear la oferta de tu empresa. El Manual del Empresario.">
+<meta name="description" content="Guía práctica para crear la oferta de tu empresa, con ejemplos. El Manual del Empresario.">
 <meta property="og:title" content="Creá la oferta de tu empresa">
-<meta property="og:description" content="5 pasos simples. Al final tenés tu oferta escrita y lista para usar.">
+<meta property="og:description" content="Guía práctica en 7 pasos, con ejemplos de negocios reales. Al final te dice qué mejorar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --carbon:#0B0C0E; --grafito:#16181C; --linea:#26292F; --acero:#8C9097; --niebla:#EDEFF1; --volt:#D4FF2E;
-}
+:root{--carbon:#0B0C0E;--grafito:#16181C;--linea:#26292F;--acero:#8C9097;--niebla:#EDEFF1;--volt:#D4FF2E;--rojo:#FF7A7A}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--carbon);color:var(--niebla);font-family:Geist,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
 body{min-height:100vh;line-height:1.5;font-size:17px}
-.wrap{max-width:620px;margin:0 auto;padding:20px 16px 120px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 130px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:26px}
 header img{height:22px;width:auto}
 header .tag{font-size:12px;color:var(--acero);letter-spacing:.04em;text-transform:uppercase;text-align:right}
 .bar{height:4px;background:var(--grafito);border-radius:4px;overflow:hidden;margin-bottom:10px}
 .bar i{display:block;height:100%;width:0;background:var(--volt);transition:width .35s ease}
-.paso-num{font-size:13px;color:var(--acero);margin-bottom:22px}
+.paso-num{font-size:13px;color:var(--acero);margin-bottom:20px;min-height:20px}
 .paso{display:none;animation:in .3s ease}
 .paso.on{display:block}
 @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 h1{font-size:34px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
-h2{font-size:26px;line-height:1.15;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
-.lead{color:var(--acero);margin-bottom:22px}
+h2{font-size:27px;line-height:1.15;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+h3{font-size:18px;font-weight:700;margin:26px 0 10px}
+.lead{color:var(--acero);margin-bottom:18px}
 .hl{background:var(--volt);color:var(--carbon);padding:0 6px;border-radius:4px}
-.piezas{display:grid;gap:10px;margin:22px 0 28px}
-.pieza{display:flex;gap:14px;align-items:flex-start;background:var(--grafito);border:1px solid var(--linea);border-radius:14px;padding:14px 16px}
+.piezas{display:grid;gap:8px;margin:18px 0 24px}
+.pieza{display:flex;gap:14px;align-items:center;background:var(--grafito);border:1px solid var(--linea);border-radius:12px;padding:12px 14px}
 .pieza b{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--volt);color:var(--volt);display:grid;place-items:center;font-size:14px}
-.pieza span{color:var(--acero);font-size:15px}
-.pieza strong{display:block;color:var(--niebla);font-size:16px}
-label{display:block;font-weight:600;margin:18px 0 8px}
+.pieza strong{font-size:16px}.pieza span{color:var(--acero);font-size:14px;display:block}
+.porque{background:var(--grafito);border-radius:14px;padding:16px;margin:4px 0 18px;font-size:16px}
+.porque strong{color:var(--volt)}
+.ejemplos{display:grid;gap:10px;margin:8px 0 6px}
+.ej{background:var(--grafito);border:1px solid var(--linea);border-radius:12px;padding:12px 14px;font-size:15px}
+.ej .rubro{font-size:12px;color:var(--acero);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.ej .x{color:var(--acero);margin-bottom:4px}.ej .x::before{content:"✕  ";color:var(--rojo)}
+.ej .v::before{content:"✓  ";color:var(--volt);font-weight:700}
+label{display:block;font-weight:600;margin:20px 0 8px}
+label small{display:block;font-weight:400;color:var(--acero);font-size:14px;margin-top:2px}
 input,textarea{width:100%;background:var(--grafito);border:1.5px solid var(--linea);border-radius:12px;color:var(--niebla);font:inherit;padding:14px 16px;outline:none;transition:border-color .2s}
-textarea{min-height:84px;resize:vertical}
+textarea{min-height:80px;resize:vertical}
 input:focus,textarea:focus{border-color:var(--volt)}
 ::placeholder{color:#5c6068}
-.tip{background:transparent;border-left:3px solid var(--volt);padding:4px 0 4px 14px;color:var(--acero);font-size:15px;margin:16px 0}
+.tip{border-left:3px solid var(--volt);padding:4px 0 4px 14px;color:var(--acero);font-size:15px;margin:18px 0}
 .tip strong{color:var(--niebla)}
-.ej{margin-top:14px}
-.ej p{font-size:13px;color:var(--acero);margin-bottom:8px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:transparent;border:1px solid var(--linea);color:var(--niebla);border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer;text-align:left}
-.chip:hover,.chip:focus-visible{border-color:var(--volt);outline:none}
 .aviso{display:none;margin-top:10px;font-size:14px;color:var(--volt)}
 .aviso.on{display:block}
-.mal-bien{display:grid;gap:8px;margin:16px 0}
-.mal-bien div{background:var(--grafito);border-radius:10px;padding:10px 14px;font-size:15px}
-.mal-bien .x{color:var(--acero)}
-.mal-bien .x::before{content:"✕  ";color:#ff6b6b}
-.mal-bien .v::before{content:"✓  ";color:var(--volt);font-weight:700}
 .nav{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(transparent,var(--carbon) 30%);padding:28px 16px 18px}
-.nav .in{max-width:620px;margin:0 auto;display:flex;gap:10px}
+.nav .in{max-width:640px;margin:0 auto;display:flex;gap:10px}
 .btn{flex:1;border:none;border-radius:12px;padding:16px;font:inherit;font-weight:700;font-size:16px;cursor:pointer}
 .btn.pri{background:var(--volt);color:var(--carbon)}
 .btn.sec{background:var(--grafito);color:var(--niebla);border:1px solid var(--linea);flex:0 0 auto;padding:16px 20px}
 .btn:disabled{opacity:.4;cursor:default}
-.oferta{background:var(--grafito);border:1.5px solid var(--volt);border-radius:16px;padding:22px 20px;font-size:20px;line-height:1.45;font-weight:500;margin:18px 0}
+.oferta{background:var(--grafito);border:1.5px solid var(--volt);border-radius:16px;padding:18px 20px 10px;font-size:17px;line-height:1.4;font-weight:500;margin:12px 0}
 .oferta em{font-style:normal;color:var(--volt)}
-.check{display:grid;gap:10px;margin:18px 0}
-.check label{display:flex;gap:12px;align-items:flex-start;margin:0;font-weight:500;background:var(--grafito);border:1px solid var(--linea);border-radius:12px;padding:14px 16px;cursor:pointer}
-.check input{width:22px;height:22px;flex:none;accent-color:var(--volt);margin-top:2px}
-.estado{font-weight:600;margin:6px 0 18px}
+.titular{font-size:24px;font-weight:800;letter-spacing:-.01em;margin:6px 0 4px}
+.nota{display:flex;align-items:center;gap:12px;margin:10px 0 20px}
+.nota .num{font-size:40px;font-weight:800;color:var(--volt);line-height:1}
+.nota .txt{color:var(--acero);font-size:15px}
+.diag{display:grid;gap:10px;margin:12px 0 20px}
+.d{background:var(--grafito);border:1px solid var(--linea);border-radius:12px;padding:14px 16px}
+.d .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}
+.d .top strong{font-size:16px}
+.badge{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.badge.ok{background:var(--volt);color:var(--carbon)}
+.badge.mejora{background:transparent;color:var(--volt);border:1px solid var(--volt)}
+.badge.falta{background:transparent;color:var(--rojo);border:1px solid var(--rojo)}
+.d p{color:var(--acero);font-size:15px;margin-top:4px}
+.d p b{color:var(--niebla);font-weight:600}
+.d .editar{background:none;border:none;color:var(--volt);font:inherit;font-size:14px;font-weight:600;cursor:pointer;padding:6px 0 0}
 .acciones{display:grid;gap:10px;margin-top:8px}
 .acciones .btn{flex:none;width:100%}
-.ok{color:var(--volt);font-size:14px;text-align:center;min-height:20px;margin-top:6px}
+.ok-msg{color:var(--volt);font-size:14px;text-align:center;min-height:20px;margin-top:6px}
+details{background:var(--grafito);border:1px solid var(--linea);border-radius:12px;margin:10px 0}
+summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--volt);font-weight:700}
+details[open] summary::after{content:"–"}
+details .cuerpo{padding:0 16px 16px;font-size:15px;color:var(--acero)}
+details .cuerpo div{margin-top:8px}
+details .cuerpo b{color:var(--niebla)}
 footer{margin-top:40px;color:var(--acero);font-size:13px;text-align:center}
 @media (min-width:640px){h1{font-size:42px}}
 </style>
@@ -80,122 +95,165 @@ footer{margin-top:40px;color:var(--acero);font-size:13px;text-align:center}
     <img src="logo.png" alt="Growth Partner AI">
     <div class="tag">El Manual<br>del Empresario</div>
   </header>
-
   <div class="bar"><i id="bar"></i></div>
   <div class="paso-num" id="pasoNum"></div>
 
   <!-- 0 · Inicio -->
-  <section class="paso on" data-paso="0">
+  <section class="paso on">
     <h1>Creá la <span class="hl">oferta</span> de tu empresa</h1>
-    <p class="lead">Una oferta no es un precio. Si cuando te preguntan «¿qué vendés?» respondés con lo que hacés y cuánto cuesta, competís por precio con todo el mundo.</p>
-    <p>Una oferta tiene 4 piezas:</p>
+    <p class="lead">Una oferta no es un precio. Si cuando te preguntan «¿qué vendés?» respondés con lo que hacés y cuánto cuesta, competís por precio con todo el mundo. Una oferta fuerte responde 7 cosas:</p>
     <div class="piezas">
-      <div class="pieza"><b>1</b><div><strong>Para quién es</strong><span>No «para todos».</span></div></div>
-      <div class="pieza"><b>2</b><div><strong>Qué resultado logra</strong><span>Algo que se pueda medir o ver.</span></div></div>
-      <div class="pieza"><b>3</b><div><strong>En cuánto tiempo</strong><span>Un plazo concreto.</span></div></div>
-      <div class="pieza"><b>4</b><div><strong>Qué pasa si no se cumple</strong><span>Lo que vos asumís si fallás.</span></div></div>
+      <div class="pieza"><b>1</b><div><strong>Para quién es</strong><span>y para quién no</span></div></div>
+      <div class="pieza"><b>2</b><div><strong>Qué resultado logra</strong><span>la vida después de comprarte</span></div></div>
+      <div class="pieza"><b>3</b><div><strong>En cuánto tiempo</strong><span>un plazo concreto</span></div></div>
+      <div class="pieza"><b>4</b><div><strong>Cómo lo lográs</strong><span>tu método, paso a paso</span></div></div>
+      <div class="pieza"><b>5</b><div><strong>Por qué vos</strong><span>lo que te hace distinto</span></div></div>
+      <div class="pieza"><b>6</b><div><strong>Qué pasa si no se cumple</strong><span>tu garantía</span></div></div>
+      <div class="pieza"><b>7</b><div><strong>Cómo presentás el precio</strong><span>para que se vea como inversión</span></div></div>
     </div>
-    <p class="lead">Son 5 pasos cortos. Al final tenés tu oferta escrita y lista para usar. Lo que escribas se queda en tu celular, no se manda a ningún lado.</p>
+    <div class="porque"><strong>Por qué las 7:</strong> no se suman, se multiplican. Una oferta con 2 piezas fuertes y 5 flojas sigue siendo floja. Con las 7 fuertes, más gente te escribe, más gente llega a la cita y más gente compra.</div>
+    <p class="lead">Cada paso trae ejemplos de negocios distintos. Al final te digo qué quedó fuerte y qué mejorar. Lo que escribas se queda en tu celular.</p>
   </section>
 
-  <!-- 1 · Negocio -->
-  <section class="paso" data-paso="1">
-    <h2>¿Qué vendés?</h2>
-    <p class="lead">Arrancá por lo que más vendés hoy. Una oferta por servicio: si tenés varios, hacé esta herramienta una vez por cada uno.</p>
-    <label for="servicio">Tu servicio o producto principal</label>
-    <input id="servicio" placeholder="Ej: clases de entrenamiento funcional" autocomplete="off">
-    <div class="tip"><strong>¿Por qué el que más vendés?</strong> Porque la gente ya lo entiende y lo busca. Es el más fácil de vender.</div>
+  <!-- 1 · Servicio + para quién -->
+  <section class="paso">
+    <h2>1. ¿Para quién es?</h2>
+    <p class="lead">Arrancá por el servicio que más vendés hoy: la gente ya lo entiende y lo busca. Si tenés varios, hacé una oferta por cada uno.</p>
+    <label for="servicio">Tu servicio principal</label>
+    <input id="servicio" placeholder="Ej: mantenimiento de aires acondicionados" autocomplete="off">
+    <div class="porque"><strong>La regla:</strong> si tu oferta es para todos, no le habla a nadie. Describí a tu mejor cliente: quién es y en qué situación está cuando te busca. Decir para quién <b>no</b> es hace que el correcto sienta «esto es para mí».</div>
+    <div class="ejemplos">
+      <div class="ej"><div class="rubro">Gimnasio</div><div class="x">Para todas las personas que quieran verse bien</div><div class="v">Para mujeres de 30 a 45 que nunca han entrenado y les da pena ir a un gimnasio lleno</div></div>
+      <div class="ej"><div class="rubro">Contador</div><div class="x">Para empresas y personas naturales</div><div class="v">Para dueños de restaurante que llevan las cuentas en un cuaderno y no saben cuánto ganan</div></div>
+      <div class="ej"><div class="rubro">Técnico de aires</div><div class="x">Para hogares y negocios</div><div class="v">Para locales comerciales que no pueden cerrar un día porque se les dañó el aire</div></div>
+    </div>
+    <label for="quien">¿Para quién es?<small>Quién es + en qué situación está</small></label>
+    <textarea id="quien" placeholder="Ej: dueños de restaurante que llevan las cuentas en un cuaderno"></textarea>
+    <div class="aviso" id="avQuien">Dice «todos» o «cualquiera»: así no le habla a nadie. Hacelo más específico.</div>
+    <label for="nopara">¿Para quién NO es?<small>Opcional, pero filtra a los que te hacen perder tiempo</small></label>
+    <input id="nopara" placeholder="Ej: no es para quien busca el más barato" autocomplete="off">
   </section>
 
-  <!-- 2 · Para quién -->
-  <section class="paso" data-paso="2">
-    <h2>¿Para quién es?</h2>
-    <p class="lead">Describí a tu mejor cliente: quién es y en qué situación está cuando te busca.</p>
-    <div class="mal-bien">
-      <div class="x">Para todas las personas que quieran verse bien</div>
-      <div class="v">Para mujeres de 30 a 45 años que nunca han entrenado</div>
+  <!-- 2 · Resultado -->
+  <section class="paso">
+    <h2>2. ¿Qué resultado logra?</h2>
+    <p class="lead">No lo que vos hacés, sino cómo queda la vida o el negocio de tu cliente después de comprarte.</p>
+    <div class="porque"><strong>La regla:</strong> si tiene un número o algo que se pueda ver, es creíble. Y prometé solo lo que ya lograste con clientes reales.</div>
+    <div class="ejemplos">
+      <div class="ej"><div class="rubro">Odontólogo</div><div class="x">Endodoncia con tecnología de punta</div><div class="v">Se te quita el dolor de muela sin perder el diente</div></div>
+      <div class="ej"><div class="rubro">Contador</div><div class="x">Asesoría contable de calidad</div><div class="v">Saber cada mes cuánto ganaste y no volver a pagar multas a la DIAN</div></div>
+      <div class="ej"><div class="rubro">Panadería (pedidos)</div><div class="x">Productos frescos y deliciosos</div><div class="v">Tu evento con postres listos el día y a la hora que dijiste, sin que tengas que estar pendiente</div></div>
     </div>
-    <label for="quien">Ayudo a…</label>
-    <textarea id="quien" placeholder="Ej: dueños de restaurantes que no tienen tiempo de llevar sus cuentas"></textarea>
-    <div class="ej"><p>Ideas para arrancar (tocá una y ajustala):</p>
-      <div class="chips" data-campo="quien">
-        <button class="chip">dueños de negocio que hacen todo solos</button>
-        <button class="chip">mamás que trabajan y no tienen tiempo para cocinar</button>
-        <button class="chip">empresas de 5 a 20 empleados sin área de ventas</button>
-      </div>
-    </div>
-    <div class="aviso" id="avQuien">Ojo: si dice «todos» o «cualquiera», no le habla a nadie. Hacelo más específico.</div>
+    <label for="resultado">¿Qué logra tu cliente?</label>
+    <textarea id="resultado" placeholder="Ej: saber cada mes cuánto ganó su restaurante"></textarea>
+    <div class="aviso" id="avResultado">Suena a lo que vos hacés, no a lo que tu cliente consigue. Probá con un número o con algo que se vea.</div>
   </section>
 
-  <!-- 3 · Resultado -->
-  <section class="paso" data-paso="3">
-    <h2>¿Qué resultado logran?</h2>
-    <p class="lead">No lo que vos hacés, sino lo que tu cliente consigue. Si tiene un número, mejor.</p>
-    <div class="mal-bien">
-      <div class="x">Asesoría contable de calidad</div>
-      <div class="v">Tener sus cuentas al día y saber cuánto ganan cada mes</div>
+  <!-- 3 · Tiempo -->
+  <section class="paso">
+    <h2>3. ¿En cuánto tiempo?</h2>
+    <p class="lead">Cuanto más concreto, más creíble. Mejor un plazo un poco más largo que cumplís, que uno corto en el que fallás.</p>
+    <div class="ejemplos">
+      <div class="ej"><div class="rubro">Gimnasio</div><div class="x">Resultados rápidos</div><div class="v">En 8 semanas, con 3 clases por semana</div></div>
+      <div class="ej"><div class="rubro">Técnico de aires</div><div class="x">Atención oportuna</div><div class="v">Técnico en tu local el mismo día si escribís antes de las 12</div></div>
     </div>
-    <label for="resultado">…a lograr…</label>
-    <textarea id="resultado" placeholder="Ej: bajar 4 kilos"></textarea>
-    <div class="tip"><strong>Prometé solo lo que ya has logrado</strong> con clientes reales. Si nunca lo has cumplido, no va en la oferta.</div>
-    <div class="aviso" id="avResultado">¿Se puede medir o ver? Probá con un número: kilos, clientes, pesos, días, horas.</div>
+    <label for="tiempo">¿En cuánto tiempo se logra?</label>
+    <input id="tiempo" placeholder="Ej: en 30 días" autocomplete="off">
+    <div class="aviso" id="avTiempo">Sin número de días, semanas o meses, el plazo no se siente real.</div>
   </section>
 
-  <!-- 4 · Tiempo -->
-  <section class="paso" data-paso="4">
-    <h2>¿En cuánto tiempo?</h2>
-    <p class="lead">Un plazo realista. Mejor un poco más largo y cumplirlo que uno corto y fallar.</p>
-    <label for="tiempo">…en…</label>
-    <input id="tiempo" placeholder="Ej: 8 semanas" autocomplete="off">
-    <div class="ej"><p>Plazos comunes:</p>
-      <div class="chips" data-campo="tiempo">
-        <button class="chip">7 días</button><button class="chip">30 días</button>
-        <button class="chip">8 semanas</button><button class="chip">90 días</button>
-      </div>
+  <!-- 4 · Método -->
+  <section class="paso">
+    <h2>4. ¿Cómo lo lográs?</h2>
+    <p class="lead">Tu método: los pasos que seguís siempre. Cuando el cliente ve un proceso claro, deja de pensar «¿y esto sí funcionará?».</p>
+    <div class="porque"><strong>Fórmula:</strong> ponele un nombre y 3 pasos. No tiene que ser algo nuevo, tiene que ser algo claro.</div>
+    <div class="ejemplos">
+      <div class="ej"><div class="rubro">Contador</div><div class="x">Llevamos su contabilidad</div><div class="v">Método Cuentas Claras: 1) organizamos tus facturas en una semana, 2) te mandamos un reporte de 1 página cada mes, 3) te avisamos 15 días antes de cada pago a la DIAN</div></div>
+      <div class="ej"><div class="rubro">Gimnasio</div><div class="x">Clases grupales</div><div class="v">Plan Arranque: 1) evaluación el primer día, 2) rutina por niveles, 3) medición cada 2 semanas</div></div>
     </div>
+    <label for="metodo">Tu método<small>Nombre + los pasos que seguís</small></label>
+    <textarea id="metodo" placeholder="Ej: 1) diagnóstico, 2) plan a la medida, 3) seguimiento semanal"></textarea>
   </section>
 
-  <!-- 5 · Garantía -->
-  <section class="paso" data-paso="5">
-    <h2>¿Qué pasa si no se cumple?</h2>
-    <p class="lead">Esto es lo que hace que confíen en vos. Vos asumís parte del riesgo, siempre que el cliente haga su parte.</p>
-    <label for="condicion">Lo que el cliente tiene que hacer (su parte)</label>
-    <input id="condicion" placeholder="Ej: si viene a todas las clases" autocomplete="off">
+  <!-- 5 · Por qué vos -->
+  <section class="paso">
+    <h2>5. ¿Por qué vos y no otro?</h2>
+    <p class="lead">Lo que sabés o hacés que tu competencia no. Tiene que ser algo que se pueda comprobar.</p>
+    <div class="porque"><strong>Ojo:</strong> «calidad», «experiencia», «compromiso» y «buen servicio» los dice todo el mundo, entonces no cuentan. Cambialos por un dato o un hecho.</div>
+    <div class="ejemplos">
+      <div class="ej"><div class="rubro">Odontólogo</div><div class="x">Profesionales con experiencia</div><div class="v">El mismo doctor te atiende de principio a fin, no te pasan a otro especialista</div></div>
+      <div class="ej"><div class="rubro">Técnico de aires</div><div class="x">Excelente servicio al cliente</div><div class="v">Te mandamos foto del antes y el después de cada equipo, y te dejamos la factura el mismo día</div></div>
+    </div>
+    <label for="secreto">¿Qué te hace distinto?</label>
+    <textarea id="secreto" placeholder="Ej: te respondemos en menos de 1 hora, todos los días"></textarea>
+    <div class="aviso" id="avSecreto">Eso lo dice todo el mundo. ¿Qué dato o hecho lo demuestra?</div>
+  </section>
+
+  <!-- 6 · Garantía -->
+  <section class="paso">
+    <h2>6. ¿Qué pasa si no se cumple?</h2>
+    <p class="lead">Tu garantía. Vos asumís parte del riesgo, siempre que el cliente haga su parte. Es lo que hace que se decida.</p>
+    <div class="porque"><strong>La regla:</strong> solo garantizás lo que vos controlás, y elegís una que puedas pagar aunque te falle 1 de cada 10 clientes.</div>
+    <div class="ejemplos">
+      <div class="ej"><div class="rubro">Gimnasio</div><div class="v">Si venís a todas las clases y no bajás los 4 kilos, el siguiente mes va por mi cuenta</div></div>
+      <div class="ej"><div class="rubro">Técnico de aires</div><div class="v">Si el mismo daño vuelve en 30 días, la visita es gratis</div></div>
+      <div class="ej"><div class="rubro">Contador</div><div class="v">Si te llega una multa por un error nuestro, la pagamos nosotros</div></div>
+    </div>
+    <label for="condicion">Lo que el cliente tiene que hacer<small>Su parte del trato</small></label>
+    <input id="condicion" placeholder="Ej: si nos mandás las facturas a tiempo" autocomplete="off">
     <label for="garantia">Lo que hacés vos si no se logra</label>
-    <textarea id="garantia" placeholder="Ej: el siguiente mes va por mi cuenta"></textarea>
-    <div class="ej"><p>Tipos de garantía:</p>
-      <div class="chips" data-campo="garantia">
-        <button class="chip">te devuelvo el dinero</button>
-        <button class="chip">sigo trabajando gratis hasta lograrlo</button>
-        <button class="chip">el siguiente mes va por mi cuenta</button>
-        <button class="chip">te devuelvo la mitad</button>
-      </div>
-    </div>
-    <div class="tip"><strong>Elegí una que puedas pagar</strong> aunque te falle con 1 de cada 10 clientes. Si te quiebra, no es tu garantía.</div>
+    <textarea id="garantia" placeholder="Ej: te devolvemos el mes"></textarea>
   </section>
 
-  <!-- 6 · Resultado -->
-  <section class="paso" data-paso="6">
-    <h2>Tu oferta</h2>
-    <p class="lead">Así queda, con tus palabras:</p>
-    <div class="oferta" id="ofertaTxt"></div>
-    <p>Antes de usarla, revisala con estas 3 preguntas:</p>
-    <div class="check" id="check">
-      <label><input type="checkbox"> Mi cliente ideal se reconoce en el «para quién».</label>
-      <label><input type="checkbox"> El resultado se puede medir o ver.</label>
-      <label><input type="checkbox"> Puedo cumplir lo que prometo aunque algo salga mal.</label>
+  <!-- 7 · Precio -->
+  <section class="paso">
+    <h2>7. ¿Cómo presentás el precio?</h2>
+    <p class="lead">El precio solo, asusta. Presentado al lado de lo que cuesta el problema, se ve como inversión.</p>
+    <div class="porque"><strong>Fórmula:</strong> precio + lo que incluye + cuánto le cuesta al cliente NO resolverlo. Si das facilidades de pago, decilo como opción, no como descuento.</div>
+    <div class="ejemplos">
+      <div class="ej"><div class="rubro">Técnico de aires</div><div class="x">Mantenimiento $180.000</div><div class="v">$180.000 con limpieza, gas revisado e informe con fotos. Un día con el local cerrado te cuesta más que eso</div></div>
+      <div class="ej"><div class="rubro">Contador</div><div class="x">$500.000 mensuales</div><div class="v">$500.000 al mes, menos de lo que cuesta una sola multa, con reporte mensual y alertas de cada pago</div></div>
     </div>
-    <p class="estado" id="estado"></p>
+    <label for="precio">Tu precio y cómo lo presentás</label>
+    <textarea id="precio" placeholder="Ej: $300.000 con todo incluido; menos de lo que pierde en un mes sin…"></textarea>
+  </section>
+
+  <!-- 8 · Resultado -->
+  <section class="paso">
+    <h2>Tu oferta</h2>
+    <p class="lead">Tu oferta, pieza por pieza:</p>
+    <div class="oferta" id="ofertaTxt"></div>
+    <div class="nota"><div class="num" id="puntaje"></div><div class="txt" id="puntajeTxt"></div></div>
+    <h3>Qué está fuerte y qué mejorar</h3>
+    <div class="diag" id="diag"></div>
     <div class="acciones">
       <button class="btn pri" id="copiar">Copiar mi oferta</button>
-      <button class="btn sec" id="editar">Volver a editar</button>
       <button class="btn sec" id="otra">Crear otra oferta</button>
     </div>
-    <p class="ok" id="ok"></p>
+    <p class="ok-msg" id="ok"></p>
+    <div class="porque" id="ayuda" style="display:none;margin-top:18px"><strong>¿Querés que la mejoremos juntos?</strong> Mandame tu oferta por WhatsApp y te digo qué cambiaría.<br><a class="btn pri" id="wa" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;margin-top:12px">Mandar mi oferta por WhatsApp</a></div>
+    <div class="porque" id="ayudaFalta" style="display:none;margin-top:18px"><strong>Completá al menos 4 de las 7 partes</strong> y te aparece el botón para mandarme tu oferta por WhatsApp y mejorarla juntos.</div>
+    <h3>Ejemplos completos</h3>
+    <details><summary>Técnico de aires acondicionados</summary><div class="cuerpo">
+      <div><b>Para quién:</b> locales comerciales que no pueden cerrar un día por un aire dañado. No es para quien busca el más barato.</div>
+      <div><b>Resultado y tiempo:</b> técnico en tu local el mismo día si escribís antes de las 12.</div>
+      <div><b>Método:</b> Revisión en 3 pasos: diagnóstico con fotos, arreglo con cotización aprobada por vos, prueba de 30 minutos antes de irnos.</div>
+      <div><b>Por qué nosotros:</b> foto del antes y el después de cada equipo y factura el mismo día.</div>
+      <div><b>Garantía:</b> si el mismo daño vuelve en 30 días, la visita es gratis.</div>
+      <div><b>Precio:</b> desde $180.000; un día con el local cerrado te cuesta más.</div>
+    </div></details>
+    <details><summary>Contador para restaurantes</summary><div class="cuerpo">
+      <div><b>Para quién:</b> dueños de restaurante que llevan las cuentas en un cuaderno. No es para quien solo quiere declarar renta una vez al año.</div>
+      <div><b>Resultado y tiempo:</b> saber cuánto ganaste cada mes, desde el primer mes.</div>
+      <div><b>Método:</b> Cuentas Claras: facturas organizadas en una semana, reporte de 1 página al mes, alerta 15 días antes de cada pago.</div>
+      <div><b>Por qué nosotros:</b> solo trabajamos con restaurantes; conocemos sus impuestos.</div>
+      <div><b>Garantía:</b> si te llega una multa por un error nuestro, la pagamos nosotros.</div>
+      <div><b>Precio:</b> $500.000 al mes, menos que una sola multa.</div>
+    </div></details>
     <div class="tip"><strong>Siguiente paso:</strong> leésela en voz alta a un cliente que ya te compró. Si te dice «sí, eso es lo que me pasaba», va bien. Si querés que la revise, mandámela por DM.</div>
   </section>
 
-  <footer>El Manual del Empresario · Growth Partner AI</footer>
+  <footer>El Manual del Empresario · Growth Partner AI · Los ejemplos son ilustrativos.</footer>
 </div>
 
 <nav class="nav"><div class="in">
@@ -205,88 +263,136 @@ footer{margin-top:40px;color:var(--acero);font-size:13px;text-align:center}
 
 <script>
 (function(){
-  var CAMPOS=['servicio','quien','resultado','tiempo','condicion','garantia'];
-  var OBLIG={1:['servicio'],2:['quien'],3:['resultado'],4:['tiempo'],5:['garantia']};
-  var KEY='gp_oferta_v1';
+  var CAMPOS=['servicio','quien','nopara','resultado','tiempo','metodo','secreto','condicion','garantia','precio'];
+  var OBLIG={1:['servicio','quien'],2:['resultado'],3:['tiempo']};
+  var KEY='gp_oferta_v2';
+  var WA_NUM=''; // número de WhatsApp de JP para los DM de la comunidad, solo dígitos con indicativo (ej. 573001234567)
   var pasos=[].slice.call(document.querySelectorAll('.paso'));
   var total=pasos.length-1, actual=0;
   var $=function(id){return document.getElementById(id)};
+  var v=function(id){return ($(id).value||'').trim()};
 
   function guardar(){try{var d={};CAMPOS.forEach(function(c){d[c]=$(c).value});localStorage.setItem(KEY,JSON.stringify(d))}catch(e){}}
   function cargar(){try{var d=JSON.parse(localStorage.getItem(KEY)||'{}');CAMPOS.forEach(function(c){if(d[c])$(c).value=d[c]})}catch(e){}}
-
   function limpio(t){return (t||'').trim().replace(/[.\s]+$/,'')}
   function esc(t){return t.replace(/[&<>"]/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]})}
-  function sinPrefijo(t,re){return limpio(t).replace(re,'')}
-
-  function partes(){
-    return {
-      quien:sinPrefijo($('quien').value,/^ayudo a\s+/i),
-      resultado:sinPrefijo($('resultado').value,/^a lograr\s+/i),
-      tiempo:sinPrefijo($('tiempo').value,/^en\s+/i),
-      condicion:limpio($('condicion').value),
-      garantia:limpio($('garantia').value)
-    };
-  }
-  function textoPlano(){
-    var p=partes();
-    var t='Ayudo a '+p.quien+' a lograr '+p.resultado+' en '+p.tiempo+'.';
-    if(p.garantia){t+=' '+(p.condicion?cap(p.condicion)+' y no se logra, ':'Si no se logra, ')+p.garantia+'.'}
-    return t;
-  }
   function cap(t){return t.charAt(0).toUpperCase()+t.slice(1)}
-  function textoHTML(){
-    var p=partes();
-    var h='Ayudo a <em>'+esc(p.quien)+'</em> a lograr <em>'+esc(p.resultado)+'</em> en <em>'+esc(p.tiempo)+'</em>.';
-    if(p.garantia){h+=' '+(p.condicion?esc(cap(p.condicion))+' y no se logra, ':'Si no se logra, ')+'<em>'+esc(p.garantia)+'</em>.'}
-    return h;
+  function palabras(t){return t.split(/\s+/).filter(Boolean).length}
+
+  var TODOS=/\b(todos|todas|todo el mundo|cualquier|cualquiera|toda persona|personas en general|hogares y (negocios|empresas)|empresas y personas)\b/i;
+  var HUECAS=/\b(calidad|experiencia|compromiso|buen servicio|excelente|excelencia|profesionales|los mejores|mejor servicio|confianza|responsab)/i;
+  var HACER=/\b(ofrecemos|brindamos|prestamos|realizamos|servicio de|asesor[ií]a|tecnolog[ií]a de punta|de calidad)\b/i;
+  var NUM=/\d|\b(un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|mismo d[ií]a|primer)\b/i;
+
+  // Diagnóstico por elemento: devuelve {estado:'ok'|'mejora'|'falta', texto}
+  function diagnosticos(){
+    var d=[];
+    var q=v('quien');
+    if(!q) d.push(['quien','Para quién','falta','Sin esto la oferta no le habla a nadie. Escribí quién es tu mejor cliente y en qué situación está.']);
+    else if(TODOS.test(q)) d.push(['quien','Para quién','mejora','Dice «todos» o un grupo muy amplio. <b>Probá:</b> «[tipo de persona o negocio] que [el problema que tiene hoy]».']);
+    else if(palabras(q)<6) d.push(['quien','Para quién','mejora','Está corto. Agregale la situación: <b>qué le pasa</b> cuando te busca. Ej: «…que llevan las cuentas en un cuaderno».']);
+    else d.push(['quien','Para quién','ok', v('nopara')?'Específico, y además decís para quién no es. Eso filtra.':'Específico. <b>Para subirlo:</b> agregá para quién NO es, así filtrás a los que te hacen perder tiempo.']);
+
+    var r=v('resultado');
+    if(!r) d.push(['resultado','Resultado','falta','Falta lo más importante: qué consigue tu cliente.']);
+    else if(HACER.test(r)||HUECAS.test(r)) d.push(['resultado','Resultado','mejora','Habla de lo que vos hacés, no de lo que tu cliente logra. <b>Preguntate:</b> «después de comprarme, ¿qué tiene o qué deja de sufrir?».']);
+    else if(!NUM.test(r)) d.push(['resultado','Resultado','mejora','Bien enfocado. <b>Para hacerlo creíble:</b> agregale un número o algo que se vea (kilos, pesos, días, clientes).']);
+    else d.push(['resultado','Resultado','ok','Concreto y medible. Confirmá que ya lo lograste con clientes reales.']);
+
+    var t=v('tiempo');
+    if(!t) d.push(['tiempo','Tiempo','falta','Sin plazo, el cliente no sabe cuándo ver el resultado.']);
+    else if(!NUM.test(t)) d.push(['tiempo','Tiempo','mejora','Poné un número: días, semanas o meses. «Rápido» no se puede medir.']);
+    else d.push(['tiempo','Tiempo','ok','Plazo concreto. Asegurate de poder cumplirlo siempre.']);
+
+    var m=v('metodo');
+    if(!m) d.push(['metodo','Método','falta','Sin método, el cliente piensa «¿y esto sí funcionará?». Escribí los 3 pasos que seguís siempre.']);
+    else if(palabras(m)<8||!/(1|2|primero|luego|después|paso|,)/i.test(m)) d.push(['metodo','Método','mejora','Está muy general. <b>Fórmula:</b> un nombre + 3 pasos. Ej: «Plan Arranque: 1) evaluación, 2) rutina por niveles, 3) medición cada 2 semanas».']);
+    else d.push(['metodo','Método','ok','Tiene pasos claros. <b>Para subirlo:</b> si no tiene nombre, ponele uno fácil de recordar.']);
+
+    var s=v('secreto');
+    if(!s) d.push(['secreto','Por qué vos','falta','Sin esto, el cliente te compara solo por precio. ¿Qué hacés que tu competencia no?']);
+    else if(HUECAS.test(s)) d.push(['secreto','Por qué vos','mejora','«Calidad», «experiencia» y parecidos los dice todo el mundo. <b>Cambialos por un hecho:</b> «te respondemos en menos de 1 hora», «el mismo doctor de principio a fin».']);
+    else d.push(['secreto','Por qué vos','ok','Es un hecho concreto. Tenelo listo para demostrarlo (fotos, testimonios, datos).']);
+
+    var g=v('garantia');
+    if(!g) d.push(['garantia','Garantía','falta','Sin garantía, todo el riesgo es del cliente y lo piensa más. Elegí una que puedas pagar.']);
+    else if(!v('condicion')) d.push(['garantia','Garantía','mejora','Falta la parte del cliente. <b>Agregá la condición:</b> «si venís a todas las clases», «si nos mandás las facturas a tiempo». Así te protegés.']);
+    else d.push(['garantia','Garantía','ok','Tiene condición y compromiso. Verificá que cubra solo lo que vos controlás.']);
+
+    var p=v('precio');
+    if(!p) d.push(['precio','Precio','falta','Falta el precio. Presentalo al lado de lo que le cuesta al cliente no resolver el problema.']);
+    else if(palabras(p)<6) d.push(['precio','Precio','mejora','El precio solo asusta. <b>Agregale:</b> qué incluye y cuánto le cuesta al cliente NO resolverlo.']);
+    else d.push(['precio','Precio','ok','Presentado con contexto. Si das facilidades de pago, mencionalas como opción, no como descuento.']);
+    return d;
   }
 
-  function valido(n){return (OBLIG[n]||[]).every(function(c){return $(c).value.trim().length>1})}
+  var PASO_DE={quien:1,resultado:2,tiempo:3,metodo:4,secreto:5,garantia:6,precio:7};
 
+  function ofertaHTML(plano){
+    var filas=[
+      ['Servicio',v('servicio')],
+      ['Para quién',v('quien')],
+      ['No es para',v('nopara')],
+      ['Resultado',v('resultado')],
+      ['Tiempo',v('tiempo')],
+      ['Cómo lo logro',v('metodo')],
+      ['Por qué yo',v('secreto')],
+      ['Garantía',v('garantia')?(v('condicion')?cap(limpio(v('condicion')))+': ':'')+limpio(v('garantia')):''],
+      ['Precio',v('precio')]
+    ].filter(function(f){return f[1]});
+    if(plano) return filas.map(function(f){return f[0]+': '+limpio(f[1])}).join('\n');
+    return filas.map(function(f){return '<div style="margin-bottom:8px"><span style="display:block;font-size:12px;color:var(--acero);text-transform:uppercase;letter-spacing:.05em">'+f[0]+'</span>'+esc(limpio(f[1]))+'</div>'}).join('');
+  }
+
+  function pintarResultado(){
+    $('ofertaTxt').innerHTML=ofertaHTML(false);
+    var d=diagnosticos(), ok=0;
+    $('diag').innerHTML=d.map(function(x){
+      if(x[2]==='ok')ok++;
+      var b={ok:'Fuerte',mejora:'Se puede mejorar',falta:'Falta'}[x[2]];
+      return '<div class="d"><div class="top"><strong>'+x[1]+'</strong><span class="badge '+x[2]+'">'+b+'</span></div><p>'+x[3]+'</p>'+(x[2]!=='ok'?'<button class="editar" data-paso="'+PASO_DE[x[0]]+'">Mejorar esta parte →</button>':'')+'</div>';
+    }).join('');
+    $('puntaje').textContent=ok+'/7';
+    var llenas=d.filter(function(x){return x[2]!=='falta'}).length;
+    if(WA_NUM&&llenas>=4){
+      var msg='Hola JP, vengo de El Manual del Empresario. Esta es mi oferta, ¿me ayudás a mejorarla?\n\n'+ofertaHTML(true)+'\n\nSalió '+ok+'/7 en la guía. Lo que me falta mejorar: '+(d.filter(function(x){return x[2]!=='ok'}).map(function(x){return x[1]}).join(', ')||'nada');
+      $('wa').href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg);
+      $('ayuda').style.display='';$('ayudaFalta').style.display='none';
+    } else { $('ayuda').style.display='none'; $('ayudaFalta').style.display= WA_NUM?'':'none'; }
+    $('puntajeTxt').textContent= ok===7?'Las 7 piezas están fuertes. Ya la podés usar.': ok>=4?'Va bien. Mejorá las que faltan y tu oferta se multiplica.':'Todavía está floja. Empezá por las que dicen «Falta».';
+  }
+
+  function valido(n){return (OBLIG[n]||[]).every(function(c){return v(c).length>1})}
   function avisos(){
-    $('avQuien').classList.toggle('on',/\b(todos|todas|cualquier|cualquiera|todo el mundo)\b/i.test($('quien').value));
-    var r=$('resultado').value.trim();
-    $('avResultado').classList.toggle('on',r.length>8 && !/\d/.test(r));
-  }
-
-  function estadoCheck(){
-    var n=document.querySelectorAll('#check input:checked').length;
-    $('estado').textContent = n===3 ? '✓ Tu oferta está lista para usar.' : (3-n)+(3-n===1?' pregunta':' preguntas')+' sin marcar: ajustá esa parte antes de usarla.';
-    $('estado').style.color = n===3 ? 'var(--volt)' : 'var(--acero)';
+    $('avQuien').classList.toggle('on',TODOS.test(v('quien')));
+    var r=v('resultado'); $('avResultado').classList.toggle('on',r.length>6&&(HACER.test(r)||HUECAS.test(r)));
+    var t=v('tiempo'); $('avTiempo').classList.toggle('on',t.length>3&&!NUM.test(t));
+    $('avSecreto').classList.toggle('on',HUECAS.test(v('secreto')));
   }
 
   function mostrar(n){
     actual=n;
     pasos.forEach(function(p,i){p.classList.toggle('on',i===n)});
     $('bar').style.width=(n/total*100)+'%';
-    $('pasoNum').textContent = n===0 ? '' : (n<total ? 'Paso '+n+' de '+(total-1) : 'Listo');
-    $('atras').style.display = n===0 ? 'none' : '';
-    $('sig').textContent = n===0 ? 'Empezar' : (n===total-1 ? 'Ver mi oferta' : 'Siguiente');
-    document.querySelector('.nav').style.display = n===total ? 'none' : '';
-    $('sig').disabled = !valido(n);
-    if(n===total){$('ofertaTxt').innerHTML=textoHTML();estadoCheck()}
+    $('pasoNum').textContent= n===0?'':(n<total?'Paso '+n+' de '+(total-1):'Listo');
+    $('atras').style.display= n===0?'none':'';
+    $('sig').textContent= n===0?'Empezar':(n===total-1?'Ver mi oferta':'Siguiente');
+    document.querySelector('.nav').style.display= n===total?'none':'';
+    $('sig').disabled=!valido(n);
+    if(n===total) pintarResultado();
     window.scrollTo({top:0,behavior:'smooth'});
-    var f=pasos[n].querySelector('input,textarea'); if(f&&n<total&&window.innerWidth>700)f.focus();
   }
 
   CAMPOS.forEach(function(c){$(c).addEventListener('input',function(){guardar();avisos();$('sig').disabled=!valido(actual)})});
-  [].forEach.call(document.querySelectorAll('.chips'),function(g){
-    g.addEventListener('click',function(e){
-      if(!e.target.classList.contains('chip'))return;
-      var f=$(g.dataset.campo); f.value=e.target.textContent; f.dispatchEvent(new Event('input')); f.focus();
-    });
-  });
   $('sig').addEventListener('click',function(){if(valido(actual))mostrar(actual+1)});
   $('atras').addEventListener('click',function(){mostrar(Math.max(0,actual-1))});
-  $('editar').addEventListener('click',function(){mostrar(1)});
-  $('otra').addEventListener('click',function(){CAMPOS.forEach(function(c){$(c).value=''});guardar();[].forEach.call(document.querySelectorAll('#check input'),function(i){i.checked=false});mostrar(1)});
-  $('check').addEventListener('change',estadoCheck);
+  $('diag').addEventListener('click',function(e){var p=e.target.getAttribute('data-paso');if(p)mostrar(+p)});
+  $('otra').addEventListener('click',function(){CAMPOS.forEach(function(c){$(c).value=''});guardar();avisos();mostrar(1)});
   $('copiar').addEventListener('click',function(){
-    var t=textoPlano();
+    var t=ofertaHTML(true);
     function hecho(){$('ok').textContent='Copiada. Pegala donde la vayas a usar.'}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(hecho,fallback)}else fallback();
     function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');hecho()}catch(e){$('ok').textContent=t}document.body.removeChild(a)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(hecho,fallback)}else fallback();
   });
   document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName==='INPUT'&&valido(actual)&&actual<total){e.preventDefault();mostrar(actual+1)}});
 
