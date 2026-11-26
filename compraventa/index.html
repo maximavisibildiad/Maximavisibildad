@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi Compraventa</title>
+<meta name="description" content="Control de la compraventa: compras, ventas, gastos y retroventas.">
+<meta name="theme-color" content="#15302B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Compraventa">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237A3E12'/%3E%3Ccircle cx='32' cy='32' r='19' fill='%23F2C14E'/%3E%3Ctext x='32' y='42' font-size='28' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%237A3E12'%3E$%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" id="touchIcon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%237A3E12'/%3E%3Ccircle cx='32' cy='32' r='19' fill='%23F2C14E'/%3E%3C/svg%3E">
+<link rel="manifest" id="manifestLink" href="#">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Tokens: tinta de libro de cuentas + oro (lo que él compra) sobre papel frío.
+   Letra Atkinson Hyperlegible: diseñada para personas con baja visión. */
+:root{
+  --papel:#EEF1EC; --tarjeta:#FFFFFF; --tinta:#15302B; --texto:#18241F; --suave:#56635C; --borde:#CBD3CC; --linea:#DDE3DC;
+  --oro:#B8862B; --oro-claro:#F5E7C4; --oro-vivo:#E2B24A;
+  --compre:#1E6B4F; --vendi:#1F4E8C; --gaste:#7A5410; --retro:#5B3A8A;
+  --rojo:#B42318; --rojo-claro:#FDE8E6; --verde:#1E6B4F; --verde-claro:#E3F1EA;
+  --r-lg:22px; --r-md:16px; --r-sm:12px;
+  --sombra:0 1px 0 rgba(21,48,43,.06),0 6px 18px -10px rgba(21,48,43,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:20px}
+body{background:var(--papel);color:var(--texto);font-family:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.4;overflow-x:hidden;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+#app{max-width:520px;margin:0 auto;padding:18px 16px 150px}
+h1{font-size:1.6rem;line-height:1.15;font-weight:800;letter-spacing:-.01em;color:var(--tinta);margin-bottom:8px}
+h2{font-size:1.15rem;font-weight:800;color:var(--tinta);margin:26px 0 10px}
+p{margin:8px 0}
+b,strong{font-weight:800}
+.sub{color:var(--suave);margin-bottom:14px;font-size:1rem}
+.muted{color:var(--suave);font-size:.85rem}
+svg{display:block}
+.ic{display:inline-flex;align-items:center;justify-content:center;flex:none;line-height:1;font-size:1.6rem}
+.ic svg{width:1.3em;height:1.3em}
+
+/* Botones base */
+button{font:inherit;cursor:pointer;border:0;color:#fff;background:var(--tinta);min-height:64px;border-radius:var(--r-md);padding:12px 18px;font-weight:800;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;text-align:center;margin:10px 0;transition:transform .08s ease,filter .08s ease}
+button:active{transform:scale(.985);filter:brightness(.93)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid var(--oro-vivo);outline-offset:2px}
+
+/* Teclas grandes del inicio y de cada menú */
+button.gigante{min-height:96px;font-size:1.4rem;justify-content:flex-start;padding:14px 18px;border-radius:var(--r-lg);text-align:left;box-shadow:var(--sombra)}
+button.gigante .ic{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.16);font-size:1.5rem}
+button.gigante .txt{display:flex;flex-direction:column;gap:2px}
+button.gigante .pista{font-size:.8rem;font-weight:500;opacity:.88}
+.c-compre{background:var(--compre)} .c-vendi{background:var(--vendi)} .c-gaste{background:var(--gaste)} .c-retro{background:var(--retro)}
+button.claro{background:var(--tarjeta);color:var(--tinta);border:2px solid var(--borde);box-shadow:none}
+button.claro .ic{color:var(--oro)}
+button.gris{background:#4C5A54}
+button.rojo{background:var(--rojo)} button.verde{background:var(--verde)} button.marron{background:var(--tinta)}
+button.chico{min-height:48px;font-size:.85rem;width:auto;padding:8px 14px;margin:0;border-radius:var(--r-sm)}
+.fila{display:flex;gap:10px}.fila>*{flex:1}
+.fila button{margin:10px 0}
+button.cuadro{flex-direction:column;gap:6px;min-height:104px;font-size:1.05rem}
+button.cuadro .ic{font-size:1.9rem}
+
+/* Franja de la caja (inicio) */
+.franja{background:var(--tinta);color:#fff;border-radius:var(--r-lg);padding:18px 18px 16px;margin:0 0 14px;position:relative;overflow:hidden}
+.franja::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:18px solid rgba(226,178,74,.14)}
+.franja .fecha{font-size:.85rem;opacity:.78;font-weight:500}
+.franja .hola{font-size:1.45rem;font-weight:800;margin:2px 0 14px}
+.franja .cajalbl{font-size:.85rem;opacity:.85}
+.franja .cajanum{font-size:2.3rem;font-weight:800;color:var(--oro-vivo);letter-spacing:-.01em;line-height:1.05}
+.franja .ajustes{position:absolute;top:14px;right:14px;z-index:1;width:48px;min-height:48px;padding:0;margin:0;border-radius:50%;background:rgba(255,255,255,.12)}
+.franja .ajustes .ic{font-size:1.2rem}
+.demo{display:inline-block;margin:0 0 10px;padding:3px 12px;border-radius:99px;font-size:.75rem;font-weight:700;background:var(--oro-claro);color:#6B4D12}
+
+/* Tarjetas y listas */
+.tarjeta{background:var(--tarjeta);border:1.5px solid var(--linea);border-radius:var(--r-md);padding:14px 16px;margin:10px 0;box-shadow:var(--sombra)}
+.tarjeta.btn{width:100%;display:block;text-align:left;color:var(--texto);font-weight:400;min-height:64px}
+.tarjeta .t{font-weight:800;font-size:1.05rem;color:var(--tinta);display:flex;align-items:center;gap:8px}
+.tarjeta .t .ic{font-size:1.1rem;color:var(--oro)}
+.tarjeta .s{color:var(--suave);font-size:.85rem;margin-top:2px}
+.aviso{background:var(--rojo);color:#fff;border-radius:var(--r-md);padding:14px 16px;font-weight:800;display:flex;gap:12px;align-items:center;margin:0 0 12px;min-height:64px;width:100%;text-align:left;justify-content:flex-start}
+.aviso .ic{font-size:1.2rem}
+
+/* Palabra */
+.versiculo{border-left:4px solid var(--oro);padding:10px 14px;margin:16px 0;font-style:italic;color:#3B3423;background:var(--oro-claro);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:.95rem}
+.pausa{background:var(--oro-claro);border:2px solid var(--oro);border-radius:var(--r-lg);padding:20px 18px;margin:10px 0}
+.pausa .grande{font-size:1.55rem;font-weight:800;color:var(--tinta);line-height:1.15;margin-bottom:10px}
+.pausa ol{margin:10px 0 10px 1.3rem}.pausa li{margin:8px 0}
+
+/* Formularios */
+label.f,.f{display:block;margin:14px 0}
+.lbl{display:block;font-weight:800;margin-bottom:6px;color:var(--tinta)}
+input,textarea,select{font:inherit;width:100%;min-height:62px;border:2px solid var(--borde);border-radius:var(--r-md);padding:10px 16px;background:#fff;color:var(--texto)}
+input:focus,textarea:focus{outline:4px solid var(--oro-vivo);outline-offset:1px;border-color:var(--tinta)}
+input.dinero{font-size:2.1rem;font-weight:800;text-align:right;color:var(--tinta)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1;min-width:30%;margin:0;background:var(--tarjeta);color:var(--tinta);border:2px solid var(--borde);font-weight:700}
+.seg button.on{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+
+/* Números */
+.resumen{width:100%;border-collapse:collapse;font-size:1.02rem}
+.resumen td{padding:11px 0;border-bottom:1px solid var(--linea);vertical-align:top}
+.resumen td:last-child{text-align:right;font-weight:800;padding-left:12px;color:var(--tinta);white-space:nowrap}
+.caja{border-radius:var(--r-md);padding:16px 18px;margin:12px 0;font-weight:700;text-align:center}
+.caja.rojo{background:var(--rojo);color:#fff}.caja.verde{background:var(--verde);color:#fff}.caja.amar{background:var(--oro-claro);color:#3B3423;border:2px solid var(--oro)}.caja.gris{background:#E2E8E2;color:var(--texto)}
+.caja .gr{font-size:1.5rem;display:block;margin-bottom:4px;font-weight:800}
+.numgrande{font-size:2.7rem;font-weight:800;line-height:1.05;color:var(--tinta);letter-spacing:-.015em}
+.numgrande.neg{color:var(--tinta)}
+.tarjeta.utilidad{background:var(--tinta);border:0;color:#fff}
+.tarjeta.utilidad .muted{color:rgba(255,255,255,.8)}
+.tarjeta.utilidad .numgrande{color:var(--oro-vivo)}
+.tarjeta.utilidad .numgrande.neg{color:var(--oro-vivo)}
+.err{color:var(--rojo);font-weight:800;margin:8px 0;min-height:1px}
+
+/* Barra de abajo */
+.barra{position:fixed;left:0;right:0;bottom:0;background:rgba(238,241,236,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--borde);padding:10px 16px calc(10px + env(safe-area-inset-bottom));z-index:5}
+.barra .fila{max-width:520px;margin:0 auto}
+.barra button{margin:0;min-height:64px}
+.barra .atras{flex:1.4;background:var(--tinta);font-size:1.1rem}
+.barra .casa{flex:1;background:var(--tarjeta);color:var(--tinta);border:2px solid var(--borde)}
+
+.fotos{display:flex;gap:8px;flex-wrap:wrap}
+.fotos img{width:calc(50% - 4px);border-radius:var(--r-sm);border:2px solid var(--linea);object-fit:cover;aspect-ratio:1}
+.fotos img.full{width:100%;aspect-ratio:auto}
+.tag{display:inline-block;padding:3px 12px;border-radius:99px;font-size:.78rem;font-weight:700;background:#E2E8E2;color:var(--tinta)}
+.tag.rojo{background:var(--rojo);color:#fff}.tag.verde{background:var(--verde);color:#fff}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.foto-btn{position:relative;overflow:hidden}
+.foto-btn input{position:absolute;inset:0;opacity:0;min-height:0;width:100%;height:100%;cursor:pointer}
+.bar{height:12px;background:#DCE3DC;border-radius:8px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--compre),#2E8A66)}
+.rinde{margin:12px 0}.rinde .top span{display:flex;align-items:center;gap:8px}
+.rinde .ic{font-size:1.1rem;color:var(--oro)}
+.cargando{text-align:center;padding:60px 0;font-size:1.2rem;color:var(--suave)}
+.hoja{width:100%}
+/* Ventana propia (reemplaza a confirm) y filas de confirmación */
+.modal{position:fixed;inset:0;z-index:20;background:rgba(21,48,43,.72);display:flex;align-items:flex-end;justify-content:center;padding:16px}
+.modal-hoja{background:var(--tarjeta);border-radius:var(--r-lg);padding:20px 18px 10px;width:100%;max-width:520px;box-shadow:var(--sombra)}
+.modal-hoja h2{margin-top:0}
+button.filaconf{justify-content:space-between;text-align:left;font-weight:400;margin:0 0 8px;min-height:64px}
+button.filaconf .k{color:var(--suave);font-size:.85rem}
+button.filaconf .v{font-weight:800;color:var(--tinta);text-align:right}
+
+/* ---- Task 4: aspecto ---- */
+/* Color de acento: cada flujo usa el color de su tecla del inicio */
+#app[data-flujo=compre]{--acento:var(--compre)} #app[data-flujo=vendi]{--acento:var(--vendi)} #app[data-flujo=gaste]{--acento:var(--gaste)} #app[data-flujo=retro]{--acento:var(--retro)}
+#app[data-flujo] h1::before{content:"";display:block;width:44px;height:5px;border-radius:3px;background:var(--acento);margin-bottom:10px}
+button.verde{background:var(--acento,var(--verde))}
+.seg button.on{background:var(--acento,var(--tinta));border-color:var(--acento,var(--tinta))}
+button.gigante.alto{min-height:80px;font-size:1.25rem}
+button.suave{background:transparent;color:var(--tinta);text-decoration:underline;text-underline-offset:4px;font-weight:700;box-shadow:none}
+.top{margin-bottom:6px}
+.top button.chico{width:64px;min-height:64px;flex:none;border-radius:var(--r-md)}
+/* Avisos: oro si solo informan, rojo si piden actuar ya */
+.aviso.oro{background:var(--oro-vivo);color:var(--tinta)}
+.tarjeta.av{border-left:7px solid var(--oro)}
+.tarjeta.av .t .ic{color:var(--oro)}
+.tarjeta.av-rojo{border-left-color:var(--rojo)}
+.tarjeta.av-rojo .t .ic{color:var(--rojo)}
+.aviso-bloque button.claro{margin-top:2px}
+/* Formularios agrupados */
+section.grupo{background:var(--tarjeta);border:1.5px solid var(--linea);border-radius:var(--r-md);padding:12px 16px 6px;margin:14px 0;box-shadow:var(--sombra)}
+.gt{font-size:1.05rem;margin:0 0 2px;padding-left:10px;border-left:4px solid var(--oro);color:var(--tinta);line-height:1.2}
+section.grupo .f{margin:12px 0}
+.pista-campo{display:block;color:var(--suave);font-size:.85rem;margin:-2px 0 6px}
+.seg.c4{flex-wrap:nowrap}
+.seg.c4 button{min-width:0;flex:1 1 0;padding:12px 4px;font-size:1.15rem}
+input::placeholder,textarea::placeholder{color:var(--suave);opacity:1}
+.buscar{position:relative;margin:6px 0 12px}
+.buscar .ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--suave);font-size:1.15rem;pointer-events:none}
+.buscar input{padding-left:50px}
+/* Tarjetas de bienes */
+.tarjeta.bien{display:flex;align-items:center;gap:14px}
+.bien .tipo{width:48px;height:48px;border-radius:50%;background:var(--oro-claro);color:#7A5410;font-size:1.3rem}
+.bien .cuerpo{flex:1;min-width:0}
+.bien .t{display:block}
+.bien .s{display:block;overflow-wrap:anywhere}
+.bien .ir{color:var(--suave);font-size:1rem}
+.tarjeta.anulado{opacity:.78;background:#F3F5F2}
+/* Pantallas de resultado */
+.resultado{background:var(--tinta);color:#fff;border-radius:var(--r-lg);padding:26px 20px 24px;margin:6px 0 16px;position:relative;overflow:hidden}
+.resultado::after{content:"";position:absolute;right:-50px;top:-50px;width:170px;height:170px;border-radius:50%;border:20px solid rgba(226,178,74,.14)}
+.rcheck{width:54px;height:54px;border-radius:50%;background:var(--oro-vivo);color:var(--tinta);display:flex;align-items:center;justify-content:center;margin-bottom:16px;position:relative;z-index:1}
+.rcheck .ic{font-size:1.5rem}
+.rlbl{font-size:.95rem;opacity:.88;font-weight:500}
+.rnum{font-size:clamp(1.9rem,10vw,2.6rem);font-weight:800;color:var(--oro-vivo);line-height:1.05;letter-spacing:-.01em;margin-top:2px}
+.rfrase{margin-top:10px;font-size:1.05rem;overflow-wrap:anywhere}
+.caja .gr .ic{font-size:1.4rem;vertical-align:-.2em}
+.franja .cajanum.neg{font-size:1.7rem}
+.hoyl{background:transparent;color:var(--suave);font-weight:500;font-size:.95rem;min-height:64px;margin:0 0 4px}
+.hoyl u{color:var(--tinta);font-weight:800}
+.donde{font-size:1.1rem;font-weight:700;color:var(--tinta);margin:0 0 12px}
+.tarjeta.numeros h2{margin:0 0 6px;font-size:1.1rem}
+.numeros ul{list-style:none}
+.numeros li{padding:9px 0;border-bottom:1px solid var(--linea);font-size:1.02rem}
+.numeros li:last-child{border-bottom:0}
+.bien .t{font-size:1.3rem;font-weight:800;line-height:1.15}
+.bien .nom{display:block;font-weight:700;color:var(--texto);margin-top:2px;overflow-wrap:anywhere}
+.bien .s{margin-top:2px}
+/* Ficha */
+.fichah{padding:20px 18px}
+.fichah .grande{font-size:2rem;color:var(--oro-vivo);justify-content:flex-start;position:relative;z-index:1}
+.fichah h1{color:#fff;margin:6px 0 2px;font-size:2rem;position:relative;z-index:1;overflow-wrap:anywhere}
+.fichah .fdesc{opacity:.92;overflow-wrap:anywhere;position:relative;z-index:1}
+.fichah .tags{margin-top:12px;position:relative;z-index:1;display:flex;gap:8px;flex-wrap:wrap}
+.fichah .tag{background:rgba(255,255,255,.16);color:#fff}
+.tag{font-size:.9rem}
+.tag.oro{background:var(--oro-vivo);color:var(--tinta)}
+.fichah .tag.oro{background:var(--oro-vivo);color:var(--tinta)}
+.tarjeta .resumen td{padding:10px 0}
+.tarjeta .resumen tr:last-child td{border-bottom:0}
+.resumen td.largo{white-space:normal;overflow-wrap:anywhere}
+.falta{color:var(--suave);font-weight:500;font-style:italic}
+/* Ayuda */
+.tarjeta.ayuda h2{margin:0 0 6px;font-size:1.1rem;display:flex;align-items:center;gap:10px}
+.tarjeta.ayuda .ic{color:var(--oro);font-size:1.2rem}
+.tarjeta.ayuda p{margin:6px 0}
+button.filaconf{gap:14px}
+button.filaconf .k{max-width:48%}
+button.filaconf .v{min-width:0;overflow-wrap:anywhere}
+button.filaconf .v.falta{font-weight:500}
+.seg button{padding:12px 6px;white-space:nowrap}
+@media (prefers-reduced-motion:reduce){button{transition:none}}
+</style>
+</head>
+<body>
+<div id="app"><div class="cargando">Cargando…</div></div>
+<div id="barra" class="barra" hidden></div>
+<script src="calc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
